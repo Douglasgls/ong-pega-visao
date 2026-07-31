@@ -1,7 +1,299 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroSection from "../components/sections/HeroSection.astro";
+import SectionTitle from "../components/common/SectionTitle.astro";
+import Container from "../components/common/Container.astro";
+import ProjectCard from "../components/sections/ProjectCard.astro";
+import Button from "../components/common/Button.astro";
+import Badge from "../components/common/Badge.astro";
+
+// Data imports
+import { projectsData } from "../data/projectsData";
+import { partnersData } from "../data/partnersData";
+import { siteData } from "../data/siteData";
+
+// Assets for Galeria de Impacto & Card Institucional
+import instCardImg from "../assets/mulher-conversando-com-jovems.jpg";
+import impactImg1 from "../assets/reconectar-e-resistir-2-2-768x960.png";
+import impactImg2 from "../assets/reconectar-e-resistir-4-2-819x1024.png";
+import impactImg3 from "../assets/reconectar-e-resistir-1-1-768x960.png";
+
+// Unused section components imported for future reuse
+import Stats from "../components/ui/Stats.astro";
+import GalleryGrid from "../components/ui/GalleryGrid.astro";
+import PartnerCard from "../components/sections/PartnerCard.astro";
+import CTA from "../components/sections/CTA.astro";
+
+const featuredProjects = projectsData.slice(0, 3);
 ---
 
-<BaseLayout title="Página Inicial" description="Página inicial do projeto institucional">
-  <h1 class="text-4xl font-bold tracking-tight">Hello World</h1>
+<BaseLayout
+  title="Home"
+  description="Instituto Pega a Visão — Cultura urbana, arte, esporte e transformação social na periferia de São Paulo."
+>
+  <!-- SEÇÃO 1: Hero (já existente) -->
+  <HeroSection />
+
+  <!-- SEÇÃO 2: Card Institucional (Texto + Imagem) -->
+  <section class="py-20 sm:py-28 bg-zinc-950">
+    <Container size="lg">
+      <div
+        class="bg-zinc-900/80 border border-zinc-800/80 rounded-3xl p-8 sm:p-12 lg:p-16 shadow-2xl relative overflow-hidden"
+      >
+        <div
+          class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center"
+        >
+          <!-- Texto Institucional -->
+          <div class="lg:col-span-6 space-y-6">
+            <div class="inline-flex items-center gap-2">
+              <Badge variant="zinc" size="md">Instituto Pega a Visão</Badge>
+              <!--<span class="text-xs text-zinc-400 font-sans">São Paulo • SP</span
+              >-->
+            </div>
+
+            <h2
+              class="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white tracking-tight leading-tight"
+            >
+              Cultura, acolhimento e oportunidade na periferia.
+            </h2>
+
+            <p
+              class="text-base sm:text-lg text-zinc-300 font-sans leading-relaxed"
+            >
+              Todos os dias, jovens enfrentam barreiras que limitam seus sonhos.
+            </p>
+            <p
+              class="text-base sm:text-lg text-zinc-300 font-sans leading-relaxed"
+            >
+              O Instituto Pega Visão existe para mudar essa realidade, criando
+              espaços de escuta, pertencimento e desenvolvimento.
+            </p>
+
+            <p
+              class="text-base sm:text-lg text-zinc-300 font-sans leading-relaxed"
+            >
+              Acreditamos que a arte educa, a cultura conecta, os vínculos
+              transformam e que nenhuma trajetória deve ser definida pelo
+              passado.
+            </p>
+
+            <!-- <div class="pt-4 flex flex-wrap items-center gap-4">
+              <Button href="/quem-somos" variant="primary" size="md">
+                Conheça Nossa História
+              </Button>
+              <Button href="/o-que-fazemos" variant="outline" size="md">
+                O Que Fazemos
+              </Button>
+            </div>-->
+          </div>
+
+          <!-- Imagem Institucional -->
+          <div class="lg:col-span-6">
+            <div
+              class="relative rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-950 shadow-xl group"
+            >
+              <Image
+                src={instCardImg}
+                alt="Vivência e diálogo comunitário do Instituto Pega a Visão"
+                class="w-full h-[320px] sm:h-[400px] lg:h-[440px] object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-zinc-950/70 via-transparent to-transparent"
+              >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section
+    class="py-24 sm:py-32 bg-zinc-950 border-t border-zinc-800/80 overflow-hidden relative"
+  >
+    <!-- Brilho ambiente sutil -->
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-orange-950/10 rounded-full filter blur-[120px] pointer-events-none"
+    >
+    </div>
+
+    <Container size="lg" class="relative z-10">
+      <!-- Mensagem Principal com Tipografia Editorial -->
+
+      <div>
+        <Badge variant="zinc" size="md">Faça a Diferença</Badge>
+      </div>
+      <div class="max-w-4xl mb-16 sm:mb-24">
+        <h2
+          class="mt-6 text-4xl sm:text-6xl md:text-7xl font-bold font-heading text-white tracking-tight leading-[1.08]"
+        >
+          Somos feitos<br />
+          de histórias que o<br />
+          sistema tentou <span
+            class="text-orange-500 underline decoration-orange-600/40 underline-offset-8"
+            >apagar</span
+          >.
+        </h2>
+      </div>
+
+      <!-- Composição Editorial de 3 Imagens Assimétricas -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+        <!-- Imagem 1: reconectar-e-resistir-2-2-768x960 -->
+        <div class="md:col-span-4 md:mt-12 group relative">
+          <div
+            class="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-zinc-800 bg-zinc-900 transition-all duration-700 group-hover:scale-[1.02] group-hover:border-zinc-700"
+          >
+            <Image
+              src={impactImg1}
+              alt="Reconectar e Resistir — Imagem 1"
+              class="w-full h-[400px] sm:h-[460px] lg:h-[500px] object-cover object-center grayscale-[20%] group-hover:grayscale-0 transition-all duration-700"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity pointer-events-none"
+            >
+            </div>
+          </div>
+        </div>
+
+        <!-- Imagem 2: reconectar-e-resistir-4-2-819x1024 (Central, Destaque Maior) -->
+        <div class="md:col-span-4 group relative">
+          <div
+            class="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-zinc-800 bg-zinc-900 transition-all duration-700 group-hover:scale-[1.02] group-hover:border-zinc-700"
+          >
+            <Image
+              src={impactImg2}
+              alt="Reconectar e Resistir — Imagem 2"
+              class="w-full h-[460px] sm:h-[540px] lg:h-[600px] object-cover object-top grayscale-[10%] group-hover:grayscale-0 transition-all duration-700"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity pointer-events-none"
+            >
+            </div>
+          </div>
+        </div>
+
+        <!-- Imagem 3: reconectar-e-resistir-1-1-768x960 -->
+        <div class="md:col-span-4 md:mt-20 group relative">
+          <div
+            class="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-zinc-800 bg-zinc-900 transition-all duration-700 group-hover:scale-[1.02] group-hover:border-zinc-700"
+          >
+            <Image
+              src={impactImg3}
+              alt="Reconectar e Resistir — Imagem 3"
+              class="w-full h-[380px] sm:h-[440px] lg:h-[480px] object-cover object-center grayscale-[20%] group-hover:grayscale-0 transition-all duration-700"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity pointer-events-none"
+            >
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SEÇÃO 3: Conheça Nossos Projetos -->
+  <section class="py-20 sm:py-28 bg-zinc-900/30 border-t border-zinc-800/80">
+    <Container size="lg">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <SectionTitle
+          badge="Iniciativas Ativas"
+          title="Conheça Nossos Projetos"
+          subtitle="Programas contínuos de formação, expressão artística e fortalecimento social."
+          class="mb-0 max-w-2xl"
+        />
+        <div class="mt-6 md:mt-0">
+          <Button href="/projetos" variant="outline" size="sm">
+            Ver Todos os Projetos
+          </Button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {featuredProjects.map((project) => <ProjectCard project={project} />)}
+      </div>
+    </Container>
+  </section>
+
+  <!-- SEÇÃO 4: Galeria de Impacto (3 Imagens + Mensagem Editorial) -->
+
+  <!-- ========================================================================= -->
+  <!-- SEÇÕES NÃO UTILIZADAS NO MOMENTO (MANTIDAS COMENTADAS PARA REUTILIZAÇÃO) -->
+  <!-- ========================================================================= -->
+
+  <!-- SEÇÃO DESATIVADA: Stats Section -->
+  <!-- <Stats /> -->
+
+  <!-- SEÇÃO DESATIVADA: Gallery Grid Antiga -->
+  <!--
+  <section class="py-20 bg-zinc-950">
+    <Container size="lg">
+      <SectionTitle
+        badge="Nossas Vivências"
+        title="Galeria da Cultura de Rua"
+        subtitle="Registros das nossas apresentações, oficinas e encontros comunitários nos territórios."
+        align="center"
+      />
+      <GalleryGrid />
+    </Container>
+  </section>
+  -->
+
+  <!-- SEÇÃO DESATIVADA: Quick Donation Highlight -->
+  <!--
+  <section class="py-20 bg-zinc-900/40 border-t border-zinc-800/80">
+    <Container size="lg">
+      <SectionTitle
+        badge="Transparência e Apoio"
+        title="Faça Parte dessa Transformação"
+        subtitle="Doe via PIX direto para a conta oficial da instituição sem intermediários."
+      />
+      <DonationCard />
+    </Container>
+  </section>
+  -->
+
+  <!-- SEÇÃO DESATIVADA: News Section -->
+  <!--
+  <section class="py-20 bg-zinc-950">
+    <Container size="lg">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <SectionTitle
+          badge="Aconteceu no Pega a Visão"
+          title="Últimas Notícias e Novidades"
+          class="mb-0 max-w-2xl"
+        />
+        <div class="mt-4 md:mt-0">
+          <Button href="/noticias" variant="ghost" size="sm">
+            Todas as Notícias →
+          </Button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {featuredNews.map((news) => <NewsCard news={news} />)}
+      </div>
+    </Container>
+  </section>
+  -->
+
+  <!-- SEÇÃO DESATIVADA: Partners -->
+  <!--
+  <section class="py-16 bg-zinc-900/30 border-t border-zinc-800/80">
+    <Container size="lg">
+      <SectionTitle
+        badge="Nossa Rede"
+        title="Parceiros e Apoiadores"
+        align="center"
+      />
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {partnersData.map((partner) => <PartnerCard partner={partner} />)}
+      </div>
+    </Container>
+  </section>
+  -->
+
+  <!-- SEÇÃO DESATIVADA: Final CTA -->
+  <!-- <CTA /> -->
 </BaseLayout>

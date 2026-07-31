@@ -1,0 +1,131 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Container from "../components/common/Container.astro";
+import Badge from "../components/common/Badge.astro";
+import TeamMemberCard from "../components/sections/TeamMemberCard.astro";
+
+// Photos from assets/equipe/
+import imgAlinne from "../assets/equipe/alinne.jpg";
+import imgMilhem from "../assets/equipe/Milhem-Cortaz_FCASA-68-1024x683.jpg";
+import imgDebora from "../assets/equipe/debora.png";
+---
+
+<BaseLayout
+  title="Equipe"
+  description="Conheça quem corre com o Instituto Pega Visão. Lideranças, educadores e articuladores comunitários."
+>
+  <!-- HERO SIMPLES E ELEGANTE -->
+  <section
+    class="py-24 sm:py-32 bg-zinc-950 border-b border-zinc-800/80 relative overflow-hidden"
+  >
+    <Container size="lg">
+      <div
+        class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center pb-12"
+      >
+        <!-- Texto Hero -->
+        <div class="lg:col-span-7 space-y-6">
+          <div>
+            <Badge variant="zinc" size="md">Nossas Lideranças</Badge>
+          </div>
+          <h1
+            class="text-3xl sm:text-5xl lg:text-6xl font-bold font-heading text-white tracking-tight leading-[1.12]"
+          >
+            Quem Corre com o Pega Visão
+          </h1>
+          <p
+            class="text-lg sm:text-xl text-zinc-300 font-sans leading-relaxed pt-2 border-l-2 border-orange-600 pl-6"
+          >
+            Um time movido por propósito, conexão com as comunidades e vontade
+            de gerar mudanças reais.
+          </p>
+        </div>
+      </div>
+    </Container>
+
+    <!-- SEÇÃO DE INTEGRANTES DA EQUIPE (COMPOSIÇÃO EDITORIAL) -->
+    <section class="py-24 sm:py-32 bg-zinc-900/30 border-t border-zinc-800/80">
+      <Container size="lg">
+        <div class="max-w-3xl mb-16 space-y-3">
+          <Badge variant="zinc" size="sm">Pessoas que Fazem Acontecer</Badge>
+          <h2
+            class="text-3xl sm:text-4xl font-bold font-heading text-white tracking-tight"
+          >
+            Nossa Equipe
+          </h2>
+        </div>
+
+        <!-- Grid Editorial de Integrantes -->
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch"
+        >
+          <!-- 1. Alinne Almeida -->
+          <TeamMemberCard
+            name="Alinne Almeida"
+            role="Fundadora & Presidente"
+            bio="Gestão com propósito: +10 anos criando projetos e, desde 2022, abrindo caminhos para jovens da Fundação CASA com diversidade e inclusão."
+            image={imgAlinne}
+            socialLinks={{
+              linkedin: "https://www.linkedin.com/alinnealmeida",
+              instagram: "https://instagram.com/i.pegavisao",
+            }}
+          />
+
+          <!-- 2. Milhem Cortaz (Destaque visual / leve deslocamento em telas lg) -->
+          <TeamMemberCard
+            name="Milhem Cortaz"
+            role="Fundador & Vice Presidente"
+            bio="Ator & Padeiro, apaixonado pela arte como ferramenta de inclusão. Transformando vidas com afeto, pão e oportunidades."
+            image={imgMilhem}
+            socialLinks={{
+              instagram: "https://www.instagram.com/cortaz",
+            }}
+            class="lg:-translate-y-4"
+          />
+
+          <!-- 3. Débora Antunes -->
+          <TeamMemberCard
+            name="Débora Antunes"
+            role="Fundadora & Diretora"
+            bio="Liderança que faz acontecer: conecta comunidades, fortalece projetos sociais e amplia oportunidades para jovens e famílias."
+            image={imgDebora}
+          />
+        </div>
+      </Container>
+    </section>
+
+    <!-- INTRODUÇÃO INSTITUCIONAL -->
+    <section class="py-24 sm:py-32 bg-zinc-950">
+      <Container size="lg">
+        <div class="max-w-4xl space-y-8">
+          <div>
+            <Badge variant="zinc" size="sm">Propósito Coletivo</Badge>
+          </div>
+
+          <h2
+            class="text-3xl sm:text-5xl font-bold font-heading text-white tracking-tight leading-tight"
+          >
+            Pega Visão
+          </h2>
+
+          <div
+            class="space-y-6 text-base sm:text-lg text-zinc-300 font-sans leading-relaxed border-t border-zinc-800/80 pt-8"
+          >
+            <p>
+              Somos construídos coletivamente por pessoas periféricas,
+              sobreviventes do cárcere e do sistema socioeducativo, e por
+              familiares comprometidos com os direitos de crianças e
+              adolescentes.
+            </p>
+            <p>
+              Nossa missão, valores e princípios são a base de tudo o que
+              fazemos. Eles guiam cada projeto, cada parceria e cada
+              oportunidade criada para transformar vidas por meio da arte, da
+              cultura e da educação.
+            </p>
+          </div>
+        </div>
+      </Container>
+    </section>
+  </section>
+</BaseLayout>

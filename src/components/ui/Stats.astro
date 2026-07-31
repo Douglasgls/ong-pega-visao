@@ -1,0 +1,56 @@
+---
+import Container from "../common/Container.astro";
+
+interface Stat {
+  value: string;
+  label: string;
+  description: string;
+}
+
+const stats: Stat[] = [
+  {
+    value: "+5.000",
+    label: "Jovens Atendidos",
+    description:
+      "Participantes diretos em nossas oficinas e eventos comunitários.",
+  },
+  {
+    value: "+45",
+    label: "Apresentações Culturais",
+    description: "Espetáculos da Trupe em praças, escolas e teatros de rua.",
+  },
+  {
+    value: "+120",
+    label: "Oficinas Gratuitas",
+    description:
+      "Atividades de formação artística, cidadania e expressão oral.",
+  },
+  {
+    value: "100%",
+    label: "Gratuito & Periférico",
+    description:
+      "Acesso totalmente livre a todas as iniciativas para a comunidade.",
+  },
+];
+---
+
+<!--<section class="py-16 bg-zinc-900/40 border-y border-zinc-800/80">
+  <Container size="lg">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {stats.map((stat) => (
+        <div class="p-6 bg-zinc-900/80 border border-zinc-800/90 rounded-xl relative overflow-hidden group hover:border-orange-500/50 transition-colors">
+          <div class="absolute top-0 left-0 w-1 h-full bg-orange-600"></div>
+          <div class="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white group-hover:text-orange-500 transition-colors">
+            {stat.value}
+          </div>
+          <div class="mt-2 text-base font-semibold font-heading text-zinc-200">
+            {stat.label}
+          </div>
+          <p class="mt-1 text-xs text-zinc-400 font-sans leading-relaxed">
+            {stat.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </Container>
+</section> -->

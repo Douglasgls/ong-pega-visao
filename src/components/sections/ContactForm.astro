@@ -1,0 +1,115 @@
+---
+import Button from '../common/Button.astro';
+---
+
+<div class="bg-zinc-900/80 border border-zinc-800/80 rounded-3xl p-6 sm:p-10 shadow-2xl">
+  <form id="contact-form" class="space-y-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div class="space-y-2">
+        <label for="name" class="block text-xs font-heading font-semibold uppercase tracking-wider text-zinc-300">
+          Seu Nome *
+        </label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          placeholder="Ex: Carlos Silva"
+          class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-orange-500 transition-colors"
+        />
+      </div>
+
+      <div class="space-y-2">
+        <label for="email" class="block text-xs font-heading font-semibold uppercase tracking-wider text-zinc-300">
+          E-mail *
+        </label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          placeholder="exemplo@email.com"
+          class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-orange-500 transition-colors"
+        />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div class="space-y-2">
+        <label for="phone" class="block text-xs font-heading font-semibold uppercase tracking-wider text-zinc-300">
+          Telefone / WhatsApp
+        </label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="(11) 99999-9999"
+          class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-orange-500 transition-colors"
+        />
+      </div>
+
+      <div class="space-y-2">
+        <label for="subject" class="block text-xs font-heading font-semibold uppercase tracking-wider text-zinc-300">
+          Assunto
+        </label>
+        <select
+          id="subject"
+          name="subject"
+          class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-orange-500 transition-colors"
+        >
+          <option value="duvidas">Dúvidas gerais</option>
+          <option value="nova-parceria">Nova Parceria</option>
+          <option value="voluntariado">Voluntariado / Participação</option>
+          <option value="imprensa">Imprensa / Mídia</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="space-y-2">
+      <label for="message" class="block text-xs font-heading font-semibold uppercase tracking-wider text-zinc-300">
+        Sua Mensagem *
+      </label>
+      <textarea
+        id="message"
+        name="message"
+        rows="5"
+        required
+        placeholder="Escreva sua mensagem aqui..."
+        class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-orange-500 transition-colors resize-none"
+      ></textarea>
+    </div>
+
+    <div>
+      <Button type="submit" variant="primary" size="lg" class="w-full sm:w-auto">
+        Enviar Mensagem
+      </Button>
+    </div>
+
+    <div id="form-feedback" class="hidden p-4 rounded-xl bg-orange-950/40 border border-orange-500/40 text-orange-300 text-sm font-medium">
+      Obrigado pelo contato! Sua mensagem foi enviada com sucesso. Retornaremos em breve.
+    </div>
+  </form>
+</div>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const feedback = document.getElementById('form-feedback');
+  const subjectSelect = document.getElementById('subject') as HTMLSelectElement;
+
+  // Check query parameter ?assunto=nova-parceria
+  const urlParams = new URLSearchParams(window.location.search);
+  const assuntoParam = urlParams.get('assunto');
+  if (assuntoParam && subjectSelect) {
+    if (assuntoParam === 'nova-parceria' || assuntoParam === 'parceria') {
+      subjectSelect.value = 'nova-parceria';
+    }
+  }
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (feedback) {
+      feedback.classList.remove('hidden');
+      form.reset();
+    }
+  });
+</script>

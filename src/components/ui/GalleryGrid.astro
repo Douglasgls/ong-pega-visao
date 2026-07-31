@@ -1,0 +1,38 @@
+---
+import { Image } from 'astro:assets';
+import img1 from '../../assets/galeria/jovems-quadra.jpeg';
+import img2 from '../../assets/galeria/RK9_005-1024x768.jpeg';
+import img3 from '../../assets/galeria/GP_004-300x225.jpeg';
+import img4 from '../../assets/galeria/Thiagsson_Chaleks_002-300x225.jpeg';
+import img5 from '../../assets/galeria/Trupe_003-300x225.jpeg';
+import img6 from '../../assets/galeria/Trupe_004-300x225.jpeg';
+import img7 from '../../assets/galeria/IMG_7475-300x200.jpg';
+import img8 from '../../assets/galeria/reconectar-e-resistir-6-768x960.png';
+
+const images = [
+  { src: img1, alt: 'Jovens na quadra comunitária', caption: 'Vivência e esporte no território' },
+  { src: img2, alt: 'Apresentação cultural nas ruas', caption: 'Arte pública e engajamento' },
+  { src: img3, alt: 'Intervenção artística urbana', caption: 'Cultura hip-hop e expressão' },
+  { src: img4, alt: 'Oficina da Trupe Pega a Visão', caption: 'Ensaios e expressão cênica' },
+  { src: img5, alt: 'Performance da Trupe', caption: 'Dramaturgia de rua autorais' },
+  { src: img6, alt: 'Grupo em apresentação', caption: 'Vozes da periferia' },
+  { src: img7, alt: 'Encontro comunitário', caption: 'Troca de saberes e cidadania' },
+  { src: img8, alt: 'Projeto Reconectar e Resistir', caption: 'Resgate de identidade' },
+];
+---
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+  {images.map((img) => (
+    <div class="group relative overflow-hidden rounded-xl bg-zinc-900 border border-zinc-800/80 aspect-[4/3] shadow-lg">
+      <Image
+        src={img.src}
+        alt={img.alt}
+        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 grayscale-[30%] group-hover:grayscale-0"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+        <span class="text-xs font-heading font-semibold text-orange-400 uppercase tracking-wider">Pega a Visão</span>
+        <p class="text-sm font-medium text-white">{img.caption}</p>
+      </div>
+    </div>
+  ))}
+</div>

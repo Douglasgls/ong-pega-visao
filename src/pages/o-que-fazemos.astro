@@ -1,0 +1,144 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/sections/PageHero.astro';
+import Container from '../components/common/Container.astro';
+import SectionTitle from '../components/common/SectionTitle.astro';
+import ImageBanner from '../components/sections/ImageBanner.astro';
+import CTA from '../components/sections/CTA.astro';
+import Stats from '../components/ui/Stats.astro';
+---
+
+<BaseLayout
+  title="O Que Fazemos"
+  description="Conheça nossas áreas de atuação, programas de formação cultural, metodologia e resultados transformadores na periferia."
+>
+  <PageHero
+    badge="Metodologia & Atuação"
+    title="O Que Fazemos"
+    description="Desenvolvemos programas continuados que combinam expressão artística, cidadania crítica, mediação comunitária e apoio ao protagonismo da juventude."
+  />
+
+  <!-- Áreas de Atuação -->
+  <section class="py-20 bg-zinc-950">
+    <Container size="lg">
+      <SectionTitle
+        badge="Eixos de Trabalho"
+        title="Nossas Principais Áreas de Atuação"
+        subtitle="Soluções práticas estruturadas para atender às demandas reais dos jovens."
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Eixo 1 -->
+        <div class="bg-zinc-900/80 border border-zinc-800 p-8 rounded-2xl space-y-4 hover:border-zinc-700 transition-colors">
+          <div class="w-12 h-12 rounded-xl bg-orange-950/60 border border-orange-600/40 flex items-center justify-center text-orange-400">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold font-heading text-white">Artes Cênicas & Teatro de Rua</h3>
+          <p class="text-sm text-zinc-300 font-sans leading-relaxed">
+            Formação continuada em dramaturgia, expressão corporal e montagem de espetáculos com a Trupe Pega a Visão. Levamos a arte para praças e espaços abertos.
+          </p>
+        </div>
+
+        <!-- Eixo 2 -->
+        <div class="bg-zinc-900/80 border border-zinc-800 p-8 rounded-2xl space-y-4 hover:border-zinc-700 transition-colors">
+          <div class="w-12 h-12 rounded-xl bg-orange-950/60 border border-orange-600/40 flex items-center justify-center text-orange-400">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>
+          </div>
+          <h3 class="text-xl font-bold font-heading text-white">Cultura Hip-Hop & Grafite</h3>
+          <p class="text-sm text-zinc-300 font-sans leading-relaxed">
+            Valorização dos elementos do hip-hop (música, poesia, rima, dança e arte visual). Pintura de murais comunitários e gravação de faixas musicais.
+          </p>
+        </div>
+
+        <!-- Eixo 3 -->
+        <div class="bg-zinc-900/80 border border-zinc-800 p-8 rounded-2xl space-y-4 hover:border-zinc-700 transition-colors">
+          <div class="w-12 h-12 rounded-xl bg-orange-950/60 border border-orange-600/40 flex items-center justify-center text-orange-400">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold font-heading text-white">Cidadania & Direitos</h3>
+          <p class="text-sm text-zinc-300 font-sans leading-relaxed">
+            Rodas de conversa sobre direitos fundamentais, combate ao racismo estrutural, saúde mental comunitária e participação em políticas públicas.
+          </p>
+        </div>
+
+        <!-- Eixo 4 -->
+        <div class="bg-zinc-900/80 border border-zinc-800 p-8 rounded-2xl space-y-4 hover:border-zinc-700 transition-colors">
+          <div class="w-12 h-12 rounded-xl bg-orange-950/60 border border-orange-600/40 flex items-center justify-center text-orange-400">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold font-heading text-white">Orientação Profissional</h3>
+          <p class="text-sm text-zinc-300 font-sans leading-relaxed">
+            Apoio no desenvolvimento de currículos, habilidades digitais, mentoria para o primeiro emprego e estimulo ao empreendedorismo da favela.
+          </p>
+        </div>
+
+        <!-- Eixo 5 -->
+        <div class="bg-zinc-900/80 border border-zinc-800 p-8 rounded-2xl space-y-4 hover:border-zinc-700 transition-colors">
+          <div class="w-12 h-12 rounded-xl bg-orange-950/60 border border-orange-600/40 flex items-center justify-center text-orange-400">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold font-heading text-white">Esporte & Convivência</h3>
+          <p class="text-sm text-zinc-300 font-sans leading-relaxed">
+            Uso de quadras comunitárias e espaços de lazer como ambientes de integração, respeito mútuo, saúde e bem-estar para crianças e jovens.
+          </p>
+        </div>
+
+        <!-- Eixo 6 -->
+        <div class="bg-zinc-900/80 border border-zinc-800 p-8 rounded-2xl space-y-4 hover:border-zinc-700 transition-colors">
+          <div class="w-12 h-12 rounded-xl bg-orange-950/60 border border-orange-600/40 flex items-center justify-center text-orange-400">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold font-heading text-white">Festivais & Mobilização</h3>
+          <p class="text-sm text-zinc-300 font-sans leading-relaxed">
+            Realização de eventos culturais gratuitos nas ruas, feiras comunitárias e redes de apoio solidário para famílias em vulnerabilidade.
+          </p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Metodologia -->
+  <section class="py-20 bg-zinc-900/40 border-t border-zinc-800/80">
+    <Container size="lg">
+      <SectionTitle
+        badge="Nossa Metodologia"
+        title="Como Construímos Impacto Real"
+        subtitle="Princípios metodológicos testados e aplicados no dia a dia dos territórios."
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="bg-zinc-950 p-6 rounded-xl border border-zinc-800 space-y-3">
+          <span class="text-2xl font-bold font-heading text-orange-500">Passo 01</span>
+          <h4 class="text-base font-bold font-heading text-white">Escuta Territorial</h4>
+          <p class="text-xs text-zinc-400">Mapeamos as necessidades e aspirações ouvindo os próprios moradores e jovens.</p>
+        </div>
+
+        <div class="bg-zinc-950 p-6 rounded-xl border border-zinc-800 space-y-3">
+          <span class="text-2xl font-bold font-heading text-orange-500">Passo 02</span>
+          <h4 class="text-base font-bold font-heading text-white">Formação Prática</h4>
+          <p class="text-xs text-zinc-400">Oficinas imersivas sem barreiras burocráticas e com material 100% gratuito.</p>
+        </div>
+
+        <div class="bg-zinc-950 p-6 rounded-xl border border-zinc-800 space-y-3">
+          <span class="text-2xl font-bold font-heading text-orange-500">Passo 03</span>
+          <h4 class="text-base font-bold font-heading text-white">Mostra Pública</h4>
+          <p class="text-xs text-zinc-400">Apontamos a produção para a comunidade através de festivais e apresentações.</p>
+        </div>
+
+        <div class="bg-zinc-950 p-6 rounded-xl border border-zinc-800 space-y-3">
+          <span class="text-2xl font-bold font-heading text-orange-500">Passo 04</span>
+          <h4 class="text-base font-bold font-heading text-white">Multiplicação</h4>
+          <p class="text-xs text-zinc-400">Os próprios jovens formados tornam-se educadores e multiplicadores.</p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Banner Manifesto -->
+  <ImageBanner />
+
+  <!-- Resultados Stats -->
+  <Stats />
+
+  <CTA />
+</BaseLayout>

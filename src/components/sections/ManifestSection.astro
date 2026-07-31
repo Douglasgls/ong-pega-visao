@@ -1,0 +1,63 @@
+---
+import Container from '../common/Container.astro';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<section class={`py-24 sm:py-36 bg-zinc-950 border-y border-zinc-800/80 relative overflow-hidden ${className}`}>
+  <!-- Subtle ambient glow background -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-950/15 rounded-full filter blur-[140px] pointer-events-none"></div>
+
+  <Container size="md" class="relative z-10">
+    <div class="space-y-8 sm:space-y-12">
+      
+      <div class="space-y-4">
+        <span class="text-xs font-heading uppercase tracking-widest font-semibold text-orange-500 bg-orange-950/60 px-4 py-1.5 rounded-full border border-orange-500/30">
+          Manifesto
+        </span>
+        
+        <h2 class="text-3xl sm:text-5xl lg:text-6xl font-bold font-heading text-white tracking-tight leading-tight">
+          Somos feitos das pessoas que o sistema tentou <span class="text-orange-500 underline decoration-orange-600/40 underline-offset-8">apagar</span>.
+        </h2>
+      </div>
+
+      <p class="text-xl sm:text-2xl lg:text-3xl font-heading text-zinc-300 leading-relaxed font-semibold">
+        Somos sobreviventes do sistema socioeducativo, do cárcere e das periferias.
+      </p>
+
+      <div class="pt-4 border-t border-zinc-800/80 space-y-6">
+        <p class="text-lg sm:text-xl text-zinc-300 font-sans leading-relaxed">
+          E é exatamente por isso que sabemos, na pele, que o que muda uma vida não é a punição.
+        </p>
+
+        <!-- Dynamic accent list of values -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4">
+          <div class="bg-zinc-900/90 border border-zinc-800/80 p-5 rounded-2xl text-center group hover:border-orange-500/50 transition-colors">
+            <span class="text-xs font-heading font-bold text-zinc-500 uppercase tracking-widest block mb-1">É O</span>
+            <span class="text-2xl sm:text-3xl font-bold font-heading text-orange-500 group-hover:scale-105 transition-transform block">Vínculo.</span>
+          </div>
+
+          <div class="bg-zinc-900/90 border border-zinc-800/80 p-5 rounded-2xl text-center group hover:border-orange-500/50 transition-colors">
+            <span class="text-xs font-heading font-bold text-zinc-500 uppercase tracking-widest block mb-1">É A</span>
+            <span class="text-2xl sm:text-3xl font-bold font-heading text-orange-500 group-hover:scale-105 transition-transform block">Escuta.</span>
+          </div>
+
+          <div class="bg-zinc-900/90 border border-zinc-800/80 p-5 rounded-2xl text-center group hover:border-orange-500/50 transition-colors">
+            <span class="text-xs font-heading font-bold text-zinc-500 uppercase tracking-widest block mb-1">É A</span>
+            <span class="text-2xl sm:text-3xl font-bold font-heading text-orange-500 group-hover:scale-105 transition-transform block">Arte.</span>
+          </div>
+
+          <div class="bg-zinc-900/90 border border-zinc-800/80 p-5 rounded-2xl text-center group hover:border-orange-500/50 transition-colors">
+            <span class="text-xs font-heading font-bold text-zinc-500 uppercase tracking-widest block mb-1">É A</span>
+            <span class="text-2xl sm:text-3xl font-bold font-heading text-orange-500 group-hover:scale-105 transition-transform block">Oportunidade.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </Container>
+</section>

@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/common/Container.astro';
+import Badge from '../components/common/Badge.astro';
+
+const dadosRegistro = [
+  { label: 'CNPJ', value: '59.558.074/0001-96' },
+  { label: 'Registro Nº', value: '510.087 — 1º Oficial de Registro Civil de Pessoas Jurídicas, Comarca de São Paulo' },
+  { label: 'Data de Registro', value: '02/06/2026' },
+  { label: 'Natureza Jurídica', value: 'Associação Civil sem fins lucrativos' },
+  { label: 'Sede', value: 'São Paulo — SP' },
+  { label: 'Apoio Jurídico ProBono', value: 'Veirano Advogados' },
+];
+---
+
+<BaseLayout
+  title="Transparência"
+  description="Informações cadastrais oficiais e transparência institucional do Instituto Pega Visão."
+>
+  <!-- HERO SIMPLES E ELEGANTE -->
+  <section class="py-20 sm:py-28 bg-zinc-950 border-b border-zinc-800/80 relative overflow-hidden">
+    <Container size="lg">
+      <div class="max-w-3xl space-y-6">
+        <div>
+          <Badge variant="zinc" size="md">Governança & Ética</Badge>
+        </div>
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold font-heading text-white tracking-tight leading-[1.12]">
+          Transparência Institucional
+        </h1>
+        <p class="text-lg sm:text-xl text-zinc-300 font-sans leading-relaxed pt-2 border-l-2 border-orange-600 pl-6">
+          A transparência fortalece a confiança entre a organização, nossos parceiros e a comunidade. Mantemos nossos dados cadastrais e registros oficiais sempre acessíveis e organizados com responsabilidade e clareza.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SEÇÃO: DADOS DE REGISTRO (LISTA ELEGANTE E MINIMALISTA) -->
+  <section class="py-20 sm:py-28 bg-zinc-950">
+    <Container size="lg">
+      <div class="max-w-5xl mx-auto">
+        <!-- Título da Lista -->
+        <h2 class="text-xs font-heading font-bold uppercase tracking-widest text-zinc-300 mb-8">
+          DADOS DE REGISTRO
+        </h2>
+
+        <!-- Lista Horizontal com Linhas Divisorias -->
+        <div class="divide-y divide-zinc-800/80 border-y border-zinc-800/80">
+          {dadosRegistro.map((item) => (
+            <div class="py-4 sm:py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-6 hover:bg-zinc-900/40 px-2 sm:px-4 rounded-lg transition-colors">
+              <span class="text-xs sm:text-sm font-sans text-zinc-400 flex-shrink-0">
+                {item.label}
+              </span>
+              <span class="text-xs sm:text-sm font-heading font-medium text-white sm:text-right break-words max-w-xl">
+                {item.value}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

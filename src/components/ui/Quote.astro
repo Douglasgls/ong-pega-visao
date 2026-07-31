@@ -1,0 +1,23 @@
+---
+interface Props {
+  text: string;
+  author: string;
+  role?: string;
+}
+
+const { text, author, role } = Astro.props;
+---
+
+<figure class="my-10 p-8 bg-gradient-to-r from-zinc-900 via-zinc-900/90 to-zinc-950 border-l-4 border-orange-600 rounded-r-2xl shadow-xl relative overflow-hidden">
+  <div class="absolute -right-4 -bottom-6 text-zinc-800/20 font-heading text-9xl select-none font-bold">“</div>
+  <blockquote class="text-lg sm:text-xl font-heading italic text-zinc-200 leading-relaxed relative z-10">
+    "{text}"
+  </blockquote>
+  <figcaption class="mt-4 flex items-center gap-3 relative z-10">
+    <div class="w-8 h-px bg-orange-500"></div>
+    <div>
+      <div class="font-heading font-bold text-white text-base">{author}</div>
+      {role && <div class="text-xs text-orange-400 font-sans">{role}</div>}
+    </div>
+  </figcaption>
+</figure>

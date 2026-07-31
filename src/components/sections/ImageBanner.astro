@@ -1,0 +1,38 @@
+---
+import { Image } from 'astro:assets';
+import bannerImg from '../../assets/reconectar-e-resistir-1-1-768x960.png';
+import Container from '../common/Container.astro';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  title = 'Resistência, Arte & Identidade Periférica',
+  subtitle = 'Transformando realidades através do resgate da autoria e do fortalecimento da voz da juventude.',
+} = Astro.props;
+---
+
+<section class="relative py-24 bg-zinc-950 overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <Image
+      src={bannerImg}
+      alt="Banner Institucional Pega a Visão"
+      class="w-full h-full object-cover object-center opacity-25 filter blur-sm"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-zinc-950"></div>
+  </div>
+
+  <Container size="lg" class="relative z-10 text-center max-w-4xl mx-auto space-y-6">
+    <span class="inline-block text-xs font-heading font-bold text-orange-500 uppercase tracking-widest bg-orange-950/60 px-4 py-1.5 rounded-full border border-orange-500/30">
+      Manifesto Pega a Visão
+    </span>
+    <h2 class="text-3xl sm:text-5xl font-bold font-heading text-white tracking-tight leading-tight">
+      {title}
+    </h2>
+    <p class="text-base sm:text-xl text-zinc-300 font-sans leading-relaxed">
+      {subtitle}
+    </p>
+  </Container>
+</section>

@@ -1,0 +1,280 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Container from "../components/common/Container.astro";
+import Badge from "../components/common/Badge.astro";
+import ProgramCard from "../components/sections/ProgramCard.astro";
+
+// Images from assets/projetos/
+import imgFunk from "../assets/projetos/Funk.jpg";
+import imgRodas from "../assets/projetos/rodas_conversas.jpeg";
+import imgRK9 from "../assets/projetos/RK9_005-1-1024x768.jpeg";
+import imgEsportes from "../assets/projetos/esportes.jpeg";
+import imgSalve from "../assets/projetos/Um_salve_salva.png";
+import imgTeatro from "../assets/projetos/teatro_arte_cultura.jpeg";
+import banner from "../assets/reconectar-e-resistir-3-2-819x1024.png";
+---
+
+<BaseLayout
+  title="Projetos"
+  description="Conheça os programas de transformação social, arte, cultura e cidadania do Instituto Pega Visão."
+>
+  <!-- HERO DA PÁGINA COM FOTOGRAFIA GRANDE -->
+  <section
+    class="py-20 sm:py-28 bg-zinc-950 border-b border-zinc-800/80 relative overflow-hidden"
+  >
+    <Container size="lg">
+      <div class="max-w-4xl space-y-6 mb-12">
+        <div>
+          <Badge variant="zinc" size="md">Nossa Atuação</Badge>
+        </div>
+        <h1
+          class="text-3xl sm:text-5xl lg:text-6xl font-bold font-heading text-white tracking-tight leading-[1.12]"
+        >
+          Nossos Programas de Transformação Social
+        </h1>
+        <p
+          class="text-lg sm:text-xl text-zinc-300 font-sans leading-relaxed pt-2 border-l-2 border-orange-600 pl-6"
+        >
+          Reconhecemos a arte, a educação e a convivência como instrumentos
+          fundamentais para a promoção de direitos, o desenvolvimento humano e a
+          construção de trajetórias marcadas pela autonomia, dignidade e
+          cidadania.
+        </p>
+      </div>
+
+      <!-- Imagem de Destaque do Hero -->
+      <div
+        class="relative rounded-3xl overflow-hidden border border-zinc-800 bg-zinc-900 shadow-2xl group"
+      >
+        <Image
+          src={banner}
+          alt="Programas de Transformação Social do Instituto Pega Visão"
+          class="w-full h-[360px] sm:h-[500px] lg:h-[580px] object-cover object-center transition-transform duration-700 group-hover:scale-105"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent"
+        >
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- PROGRAMAS DESTACADOS (LAYOUT EDITORIAL ALTERNADO 50/50) -->
+  <section class="py-24 bg-zinc-950">
+    <Container size="lg" class="space-y-20">
+      <!-- Programa 1: Funk – Na Palma, no Beat (Imagem Esquerda, Texto Direita) -->
+      <div
+        class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center"
+      >
+        <div class="lg:col-span-6">
+          <div
+            class="relative rounded-3xl overflow-hidden border border-zinc-800 bg-zinc-900 shadow-xl group"
+          >
+            <Image
+              src={imgFunk}
+              alt="Funk – Na Palma, no Beat"
+              class="w-full h-[360px] sm:h-[440px] object-cover object-center transition-transform duration-700 group-hover:scale-105"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-zinc-950/60 via-transparent to-transparent"
+            >
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6 space-y-4">
+          <Badge variant="zinc" size="sm">Música & Linguagem</Badge>
+          <h2
+            class="text-3xl sm:text-4xl font-bold font-heading text-white tracking-tight"
+          >
+            Funk – Na Palma, no Beat
+          </h2>
+          <p
+            class="text-base sm:text-lg text-zinc-300 font-sans leading-relaxed"
+          >
+            Laboratório de criação musical com o funk como linguagem central. Os
+            adolescentes participam de composição, gravação e mixagem,
+            produzindo um EP autoral.
+          </p>
+        </div>
+      </div>
+
+      <!-- Programa 2: Um Salve Salva! (Texto Esquerda, Imagem Direita) -->
+      <div
+        class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center"
+      >
+        <div class="lg:col-span-6 space-y-4 order-2 lg:order-1">
+          <Badge variant="zinc" size="sm">Cuidado Psicossocial</Badge>
+          <h2
+            class="text-3xl sm:text-4xl font-bold font-heading text-white tracking-tight"
+          >
+            Um Salve Salva!
+          </h2>
+          <p
+            class="text-base sm:text-lg text-zinc-300 font-sans leading-relaxed"
+          >
+            Cuidado psicossocial em rodas de conversa mediadas por psicólogos.
+            Aborda masculinidades, negritude, bem-estar emocional, autocuidado e
+            projetos de vida com base na escuta horizontal.
+          </p>
+        </div>
+
+        <div class="lg:col-span-6 order-1 lg:order-2">
+          <div
+            class="relative rounded-3xl overflow-hidden border border-zinc-800 bg-zinc-900 shadow-xl group"
+          >
+            <Image
+              src={imgSalve}
+              alt="Um Salve Salva!"
+              class="w-full h-[360px] sm:h-[440px] object-cover object-top transition-transform duration-700 group-hover:scale-105"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-zinc-950/60 via-transparent to-transparent"
+            >
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- PROGRAMAS EM GRID EDITORIAL -->
+  <section class="py-24 bg-zinc-900/30 border-t border-zinc-800/80">
+    <Container size="lg">
+      <div class="mb-14 max-w-2xl">
+        <Badge variant="zinc" size="sm">Mais Programas</Badge>
+        <h2
+          class="mt-3 text-3xl sm:text-4xl font-bold font-heading text-white tracking-tight"
+        >
+          Arte, Convivência e Aprendizado
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Rodas de Conversa -->
+        <ProgramCard
+          title="Rodas de Conversa"
+          category="Diálogo & Conexão"
+          description="Rodas de conversa com artistas, lideranças e convidados que compartilham vivências, inspiram trajetórias e ampliam olhares sobre a sociedade."
+          image={imgRodas}
+        />
+
+        <!-- RK9 – Caminhando sobre 4 patas -->
+        <ProgramCard
+          title="RK9 – Caminhando sobre 4 patas"
+          category="Adestramento & Bem-Estar"
+          description="Dinâmicas básicas de adestramento canino. Resultados documentados de melhora no bem-estar e interesse em novas perspectivas profissionais."
+          image={imgRK9}
+        />
+
+        <!-- Esporte -->
+        <ProgramCard
+          title="Esporte"
+          category="Saúde & Coletividade"
+          description="Práticas esportivas coletivas que fortalecem o bem-estar, o trabalho em equipe, a disciplina e a descoberta de novos caminhos para o futuro."
+          image={imgEsportes}
+        />
+
+        <!-- Teatro, Arte & Cultura -->
+        <ProgramCard
+          title="Teatro, Arte & Cultura"
+          category="Expressão Cultural"
+          description="Experiências culturais que aproximam os jovens da arte, da criatividade e de novas formas de ver o mundo."
+          image={imgTeatro}
+        />
+      </div>
+    </Container>
+  </section>
+
+  <!-- NOVA SEÇÃO: NOSSAS AÇÕES (3 GRANDES BLOCOS HORIZONTAIS) -->
+  <section class="py-24 sm:py-32 bg-zinc-950 border-t border-zinc-800/80">
+    <Container size="lg">
+      <!-- Cabeçalho da Seção -->
+      <div class="max-w-3xl space-y-4 mb-16">
+        <div>
+          <Badge variant="zinc" size="md">Nossas Ações</Badge>
+        </div>
+        <h2
+          class="text-3xl sm:text-5xl font-bold font-heading text-white tracking-tight leading-tight"
+        >
+          Nossas Ações
+        </h2>
+        <p class="text-base sm:text-lg text-zinc-300 font-sans leading-relaxed">
+          Nossa atuação parte da convicção de que ampliar acessos, garantir
+          direitos e criar oportunidades é o caminho para construir uma
+          sociedade mais justa, inclusiva e transformadora.
+        </p>
+      </div>
+
+      <!-- 3 Grandes Blocos Horizontais -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Bloco 1 -->
+        <div
+          class="bg-zinc-900/80 border border-zinc-800/80 rounded-3xl p-8 sm:p-10 flex flex-col md:flex-row items-start md:items-center gap-6 hover:border-zinc-700 transition-colors group"
+        >
+          <div
+            class="w-14 h-14 rounded-2xl bg-orange-950/60 border border-orange-600/40 flex items-center justify-center font-heading font-bold text-orange-400 text-xl flex-shrink-0 group-hover:scale-105 transition-transform"
+          >
+            01
+          </div>
+          <div class="space-y-2">
+            <h3 class="text-xl sm:text-2xl font-bold font-heading text-white">
+              Início da Transformação
+            </h3>
+            <p
+              class="text-sm sm:text-base text-zinc-300 font-sans leading-relaxed"
+            >
+              Acolhemos jovens em medidas socioeducativas, criando um espaço
+              seguro para o despertar do talento e da criatividade.
+            </p>
+          </div>
+        </div>
+
+        <!-- Bloco 2 -->
+        <div
+          class="bg-zinc-900/80 border border-zinc-800/80 rounded-3xl p-8 sm:p-10 flex flex-col md:flex-row items-start md:items-center gap-6 hover:border-zinc-700 transition-colors group"
+        >
+          <div
+            class="w-14 h-14 rounded-2xl bg-orange-950/60 border border-orange-600/40 flex items-center justify-center font-heading font-bold text-orange-400 text-xl flex-shrink-0 group-hover:scale-105 transition-transform"
+          >
+            02
+          </div>
+          <div class="space-y-2">
+            <h3 class="text-xl sm:text-2xl font-bold font-heading text-white">
+              Capacitação e Apoio
+            </h3>
+            <p
+              class="text-sm sm:text-base text-zinc-300 font-sans leading-relaxed"
+            >
+              Oferecemos atividades que fortalecem habilidades, autoestima e o
+              senso de pertencimento cultural.
+            </p>
+          </div>
+        </div>
+
+        <!-- Bloco 3 -->
+        <div
+          class="bg-zinc-900/80 border border-zinc-800/80 rounded-3xl p-8 sm:p-10 flex flex-col md:flex-row items-start md:items-center gap-6 hover:border-zinc-700 transition-colors group"
+        >
+          <div
+            class="w-14 h-14 rounded-2xl bg-orange-950/60 border border-orange-600/40 flex items-center justify-center font-heading font-bold text-orange-400 text-xl flex-shrink-0 group-hover:scale-105 transition-transform"
+          >
+            03
+          </div>
+          <div class="space-y-2">
+            <h3 class="text-xl sm:text-2xl font-bold font-heading text-white">
+              Impacto Comunitário
+            </h3>
+            <p
+              class="text-sm sm:text-base text-zinc-300 font-sans leading-relaxed"
+            >
+              Nossas ações geram mudanças positivas, promovendo o protagonismo
+              juvenil e a revitalização dos territórios onde atuamos.
+            </p>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

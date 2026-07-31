@@ -1,0 +1,31 @@
+---
+interface Item {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  items: Item[];
+  class?: string;
+}
+
+const { items, class: className = '' } = Astro.props;
+---
+
+<div class={`space-y-4 ${className}`}>
+  {items.map((item, index) => (
+    <details class="group bg-zinc-900/60 border border-zinc-800/80 rounded-xl overflow-hidden [&_summary::-webkit-details-marker]:hidden transition-all duration-300 open:bg-zinc-900">
+      <summary class="flex items-center justify-between p-6 cursor-pointer select-none font-heading text-base sm:text-lg font-semibold text-white group-hover:text-orange-400 transition-colors">
+        <span>{item.question}</span>
+        <span class="ml-4 flex-shrink-0 transition-transform duration-300 group-open:-rotate-180 text-orange-500">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </span>
+      </summary>
+      <div class="px-6 pb-6 text-sm sm:text-base text-zinc-400 font-sans leading-relaxed border-t border-zinc-800/50 pt-4">
+        {item.answer}
+      </div>
+    </details>
+  ))}
+</div>

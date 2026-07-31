@@ -1,0 +1,45 @@
+---
+import Container from '../common/Container.astro';
+import Button from '../common/Button.astro';
+import Badge from '../common/Badge.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  buttonText?: string;
+  buttonHref?: string;
+}
+
+const {
+  title = 'Junte-se ao Instituto Pega a Visão',
+  description = 'Sua colaboração impulsiona projetos culturais, artísticos e de cidadania para centenas de jovens da periferia.',
+  buttonText = 'Fazer uma Doação Agora',
+  buttonHref = '/',
+} = Astro.props;
+---
+
+<section class="py-20 relative bg-zinc-950 overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-r from-orange-950/30 via-zinc-900 to-zinc-950 pointer-events-none"></div>
+  <Container size="lg" class="relative z-10">
+    <div class="bg-gradient-to-r from-zinc-900 via-zinc-900 to-zinc-950 border border-zinc-800 rounded-3xl p-8 sm:p-14 text-center sm:text-left flex flex-col lg:flex-row items-center justify-between gap-8 shadow-2xl">
+      <div class="max-w-2xl space-y-4">
+        <Badge variant="orange" size="md">Faça a Diferença</Badge>
+        <h2 class="text-3xl sm:text-4xl font-bold font-heading text-white leading-tight">
+          {title}
+        </h2>
+        <p class="text-base text-zinc-300 font-sans leading-relaxed">
+          {description}
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 flex-shrink-0 w-full sm:w-auto">
+        <Button href={buttonHref} variant="primary" size="lg" class="w-full sm:w-auto">
+          {buttonText}
+        </Button>
+        <Button href="/contato" variant="outline" size="lg" class="w-full sm:w-auto">
+          Falar Conosco
+        </Button>
+      </div>
+    </div>
+  </Container>
+</section>

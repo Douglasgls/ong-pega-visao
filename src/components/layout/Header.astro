@@ -1,4 +1,146 @@
 ---
+import { Image } from 'astro:assets';
+import { siteData } from '../../data/siteData';
+import Button from '../common/Button.astro';
+import logoImg from '../../assets/instituto-pega-a-visao-logo.png';
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = Astro.url.pathname } = Astro.props;
 ---
-<header>
+
+<header
+  id="main-header"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 border-b border-transparent"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-3 group focus:outline-none">
+        <Image
+          src={logoImg}
+          alt="Instituto Pega a Visão Logo"
+          class="h-10 sm:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+        />
+        <div class="hidden sm:flex flex-col leading-none">
+          <span class="font-heading font-bold text-lg text-white tracking-wide uppercase">Pega a Visão</span>
+          <span class="text-[10px] text-zinc-400 font-sans tracking-wider uppercase">Instituto Social</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden lg:flex items-center space-x-1 xl:space-x-2">
+        {
+          siteData.navLinks.map((link) => {
+            const isActive = currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href));
+            return (
+              <a
+                href={link.href}
+                class={`text-sm font-heading font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+                  isActive
+                    ? 'text-orange-500 bg-orange-950/30 border border-orange-500/20'
+                    : 'text-zinc-300 hover:text-white hover:bg-zinc-800/50'
+                }`}
+              >
+                {link.label}
+              </a>
+            );
+          })
+        }
+      </nav>
+
+      <!-- Action Button -->
+      <div class="hidden sm:flex items-center gap-3">
+        <Button href="/" variant="primary" size="sm">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          Doar Agora
+        </Button>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button
+        id="mobile-menu-button"
+        type="button"
+        class="lg:hidden p-2 rounded-lg text-zinc-300 hover:text-white hover:bg-zinc-800 focus:outline-none"
+        aria-label="Abrir Menu"
+      >
+        <svg id="hamburger-icon" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="close-icon" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer -->
+  <div
+    id="mobile-menu"
+    class="lg:hidden hidden fixed inset-x-0 top-[73px] bg-zinc-950/95 backdrop-blur-xl border-b border-zinc-800/80 px-4 pt-4 pb-6 shadow-2xl transition-all duration-300"
+  >
+    <div class="flex flex-col space-y-2">
+      {
+        siteData.navLinks.map((link) => {
+          const isActive = currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href));
+          return (
+            <a
+              href={link.href}
+              class={`text-base font-heading font-medium px-4 py-3 rounded-lg transition-colors ${
+                isActive
+                  ? 'text-orange-500 bg-orange-950/40 border border-orange-500/30'
+                  : 'text-zinc-200 hover:bg-zinc-900'
+              }`}
+            >
+              {link.label}
+            </a>
+          );
+        })
+      }
+      <div class="pt-4 border-t border-zinc-800/80">
+        <Button href="/" variant="primary" size="md" class="w-full">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          Doar Agora
+        </Button>
+      </div>
+    </div>
+  </div>
 </header>
+
+<script>
+  const header = document.getElementById('main-header');
+  const menuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const hamburgerIcon = document.getElementById('hamburger-icon');
+  const closeIcon = document.getElementById('close-icon');
+
+  // Handle header scroll state
+  function updateHeaderState() {
+    if (window.scrollY > 20) {
+      header?.classList.add('bg-zinc-950/90', 'backdrop-blur-md', 'border-zinc-800/60', 'py-3');
+      header?.classList.remove('py-4', 'border-transparent');
+    } else {
+      header?.classList.remove('bg-zinc-950/90', 'backdrop-blur-md', 'border-zinc-800/60', 'py-3');
+      header?.classList.add('py-4', 'border-transparent');
+    }
+  }
+
+  window.addEventListener('scroll', updateHeaderState);
+  updateHeaderState();
+
+  // Handle mobile menu toggle
+  menuButton?.addEventListener('click', () => {
+    const isExpanded = mobileMenu?.classList.contains('hidden');
+    if (isExpanded) {
+      mobileMenu?.classList.remove('hidden');
+      hamburgerIcon?.classList.add('hidden');
+      closeIcon?.classList.remove('hidden');
+    } else {
+      mobileMenu?.classList.add('hidden');
+      hamburgerIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+    }
+  });
+</script>
