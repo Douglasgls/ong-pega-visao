@@ -11,25 +11,37 @@ import imgConversa from "../assets/quem_somos/mulher-conversando-com-jovems.jpg"
 import imgReconectar3 from "../assets/quem_somos/reconectar-e-resistir-3-2-819x1024.png";
 import imgReconectar6 from "../assets/quem_somos/reconectar-e-resistir-6-1-819x1024.png";
 import imgGrupo from "../assets/grupo-pega-visao.jpg";
+import imgLogo from "../assets/instituto-pega-a-visao-logo.png";
 ---
 
 <BaseLayout
   title="Quem Somos"
   description="Conheça o Instituto Pega Visão, uma organização construída coletivamente por pessoas periféricas, sobreviventes do cárcere e do sistema socioeducativo."
 >
-  <!-- BLOCO 1: Hero Humano & Sóbrio -->
-  <section class="py-24 sm:py-32 bg-zinc-950 border-b border-zinc-800/80 relative overflow-hidden">
+  <!-- BLOCO 1: Hero Humano & Sóbrio (Texto à Esquerda, Imagem à Direita, Sem Tag) -->
+  <section class="py-20 sm:py-28 bg-zinc-950 border-b border-zinc-800/80 relative overflow-hidden">
     <Container size="lg">
-      <div class="max-w-4xl space-y-6">
-        <div>
-          <Badge variant="zinc" size="md">Quem Somos</Badge>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <!-- Texto à Esquerda -->
+        <div class="lg:col-span-7 space-y-6">
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold font-heading text-white tracking-tight leading-[1.15]">
+            Conheça a missão e a visão que impulsionam o Instituto Pega Visão
+          </h1>
+          <p class="text-lg sm:text-xl md:text-2xl text-zinc-300 font-sans leading-relaxed pt-2 border-l-2 border-orange-600 pl-6">
+            O Instituto Pega Visão é uma organização da sociedade civil sem fins lucrativos, construída coletivamente por pessoas periféricas, sobreviventes do cárcere, do sistema socioeducativo e familiares destes.
+          </p>
         </div>
-        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold font-heading text-white tracking-tight leading-[1.15]">
-          Conheça a missão e a visão que impulsionam o Instituto Pega Visão
-        </h1>
-        <p class="text-lg sm:text-xl md:text-2xl text-zinc-300 font-sans leading-relaxed pt-2 border-l-2 border-orange-600 pl-6">
-          O Instituto Pega Visão é uma organização da sociedade civil sem fins lucrativos, construída coletivamente por pessoas periféricas, sobreviventes do cárcere, do sistema socioeducativo e familiares destes.
-        </p>
+
+        <!-- Imagem do Logo à Direita do Texto -->
+        <div class="lg:col-span-5 flex justify-center lg:justify-end">
+          <div class="relative p-8 sm:p-12 bg-zinc-900/80 border border-zinc-800/80 rounded-3xl shadow-2xl flex items-center justify-center group hover:border-zinc-700 transition-colors w-full sm:w-auto">
+            <Image
+              src={imgLogo}
+              alt="Instituto Pega Visão Logo"
+              class="h-36 sm:h-48 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+            />
+          </div>
+        </div>
       </div>
     </Container>
   </section>
