@@ -23,6 +23,8 @@ import imgThiagsson from "../assets/voluntarios/Thiagsson_Chaleks_002-2-300x225.
 import imgChefEdson from "../assets/voluntarios/chef_edson_leite_GP_003-300x225.jpeg";
 import imgNayara from "../assets/voluntarios/nayara_image-10-300x300.png";
 import imgJaco from "../assets/voluntarios/jaco_image-14-300x300.png";
+import imgLivia from "../assets/voluntarios/Livia_maria.jpeg";
+import imgDouglas from "../assets/voluntarios/douglas.jpeg";
 
 const voluntarios = [
   { name: "Mc Filhote", image: imgMcFilhote },
@@ -31,6 +33,8 @@ const voluntarios = [
   { name: "Chef Edson Leite", image: imgChefEdson },
   { name: "Nayara Capello", image: imgNayara },
   { name: "Jacó", image: imgJaco },
+  { name: "Lívia Maria", image: imgLivia, imageClass: "object-contain p-3" },
+  { name: "Douglas Paz", image: imgDouglas, imageClass: "object-contain p-3" },
 ];
 ---
 
@@ -187,22 +191,24 @@ const voluntarios = [
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {voluntarios.map((voluntario) => (
-            <div class="bg-zinc-900/80 border border-zinc-800/80 rounded-2xl overflow-hidden group hover:border-orange-500/40 hover:shadow-2xl hover:shadow-orange-500/5 transition-all duration-500 flex flex-col">
-              <div class="relative h-64 sm:h-72 w-full overflow-hidden bg-zinc-950">
-                <Image
-                  src={voluntario.image}
-                  alt={voluntario.name}
-                  class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                />
+          {
+            voluntarios.map((voluntario) => (
+              <div class="bg-zinc-900/80 border border-zinc-800/80 rounded-2xl overflow-hidden group hover:border-orange-500/40 hover:shadow-2xl hover:shadow-orange-500/5 transition-all duration-500 flex flex-col">
+                <div class="relative h-64 sm:h-72 w-full overflow-hidden bg-zinc-950">
+                  <Image
+                    src={voluntario.image}
+                    alt={voluntario.name}
+                    class="w-full h-full object-scale-down object-center transition-transform duration-700 group-hover:scale-115"
+                  />
+                </div>
+                <div class="py-3 px-4 text-center">
+                  <h3 class="text-base sm:text-lg font-bold font-heading text-white tracking-tight">
+                    {voluntario.name}
+                  </h3>
+                </div>
               </div>
-              <div class="py-3 px-4 text-center">
-                <h3 class="text-base sm:text-lg font-bold font-heading text-white tracking-tight">
-                  {voluntario.name}
-                </h3>
-              </div>
-            </div>
-          ))}
+            ))
+          }
         </div>
       </Container>
     </section>
