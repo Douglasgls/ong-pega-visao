@@ -12,7 +12,6 @@ import imgHeroParcerias from "../assets/grupo-pega-visao.jpg";
 // Logos from assets/parceiros_logos/
 import logoProBono from "../assets/parceiros_logos/probono.svg";
 import logoTechSoup from "../assets/parceiros_logos/techsoup_logo_rev-cmyk_1.png";
-import logoPaoBom from "../assets/parceiros_logos/LOGO_VÉRTICES_NOVA.avif";
 import logoCortaz from "../assets/parceiros_logos/cortaz_logo.jpg";
 import logoPodBaile from "../assets/parceiros_logos/podbaile_logo.jpg";
 import logoNaPalmaNoBeat from "../assets/parceiros_logos/na_palma_no_beat_logo.jpg";
@@ -20,8 +19,22 @@ import logoStudioFavelaChic from "../assets/parceiros_logos/studiofavelachic_log
 import logoFundacaoCasa from "../assets/parceiros_logos/FDC_Colorido_Horizontal.png";
 import logoGoodstack from "../assets/parceiros_logos/logo-white-goodstack.svg";
 import logoResponsa from "../assets/parceiros_logos/logo-responsa-1.png";
+import logoPaoBom from "../assets/parceiros_logos/logopaobom.jpg";
+import logoVeirano from "../assets/parceiros_logos/logo-veirano.svg";
 
-const parceiros = [
+interface Parceiro {
+  name: string;
+  description: string;
+  logo?: ImageMetadata;
+  logoWhiteBg?: boolean;
+  logoFit?: "contain" | "cover";
+  logoScale?: string;
+  hideLogoBox?: boolean;
+  link?: string;
+  websiteLink?: string;
+}
+
+const parceiros: Parceiro[] = [
   {
     name: "Fundação CASA",
     description:
@@ -53,6 +66,8 @@ const parceiros = [
       "Parceiro estratégico na área de gastronomia e formação profissional. Viabiliza as oficinas de panificação artesanal com domínio técnico e apoia na empregabilidade de jovens egressos.",
     logo: logoPaoBom,
     logoWhiteBg: true,
+    logoFit: "cover",
+    logoScale: "scale-[1]",
     link: "https://www.instagram.com/paobomparatodomundo/?hl=en",
     websiteLink: "https://www.vertices.com.br/paobompratodomundo",
   },
@@ -74,7 +89,8 @@ const parceiros = [
     name: "Veirano Advogados",
     description:
       "Apoio Pro Bono para a consolidação institucional e jurídica do Instituto, garantindo estrutura legal sólida para o crescimento do trabalho.",
-    hideLogoBox: true,
+    logo: logoVeirano,
+    websiteLink: "https://www.veirano.com.br/",
   },
   {
     name: "Cortaz o Pão",
@@ -199,6 +215,8 @@ const parceiros = [
               description={parceiro.description}
               logo={parceiro.logo}
               logoWhiteBg={parceiro.logoWhiteBg}
+              logoFit={parceiro?.logoFit}
+              logoScale={parceiro.logoScale}
               hideLogoBox={parceiro.hideLogoBox}
               link={parceiro.link}
               websiteLink={parceiro.websiteLink}

@@ -1,0 +1,116 @@
+---
+import { Image } from "astro:assets";
+import Container from "../common/Container.astro";
+import Badge from "../common/Badge.astro";
+
+// Logos
+import logoFundacaoCasa from "../../assets/parceiros_logos/FDC_Colorido_Horizontal.png";
+import logoResponsa from "../../assets/parceiros_logos/logo-responsa-1.png";
+import logoProBono from "../../assets/parceiros_logos/probono.svg";
+import logoPaoBom from "../../assets/parceiros_logos/logopaobom.jpg";
+import logoGoodstack from "../../assets/parceiros_logos/logo-white-goodstack.svg";
+import logoTechSoup from "../../assets/parceiros_logos/techsoup_logo_rev-cmyk_1.png";
+import logoCortaz from "../../assets/parceiros_logos/cortaz_logo.jpg";
+import logoPodBaile from "../../assets/parceiros_logos/podbaile_logo.jpg";
+import logoNaPalmaNoBeat from "../../assets/parceiros_logos/na_palma_no_beat_logo.jpg";
+import logoStudioFavelaChic from "../../assets/parceiros_logos/studiofavelachic_logo.jpg";
+import logoVeirano from "../../assets/parceiros_logos/logo-veirano.svg";
+
+const partnerLogos = [
+  { name: "Fundação CASA", image: logoFundacaoCasa, whiteBg: true },
+  { name: "Instituto Responsa", image: logoResponsa, whiteBg: true },
+  { name: "Instituto Pro Bono", image: logoProBono, whiteBg: true },
+  {
+    name: "Pão Bom Pra Todo Mundo",
+    image: logoPaoBom,
+    whiteBg: true,
+    logoFit: "cover",
+    logoScale: "scale-[1.0]",
+  },
+  { name: "Goodstack", image: logoGoodstack, whiteBg: false },
+  { name: "TechSoup", image: logoTechSoup, whiteBg: false },
+  { name: "Cortaz o Pão", image: logoCortaz, whiteBg: false },
+  { name: "Pod Baile", image: logoPodBaile, whiteBg: false },
+  { name: "Na Palma, No Beat", image: logoNaPalmaNoBeat, whiteBg: false },
+  { name: "Studio Favela Chic", image: logoStudioFavelaChic, whiteBg: false },
+  { name: "Veirano Advogados", image: logoVeirano, whiteBg: false },
+];
+
+// Duplicate list to achieve 100% seamless infinite loop
+const doubleLogos = [...partnerLogos, ...partnerLogos];
+---
+
+<section
+  class="py-16 sm:py-24 bg-zinc-950 border-t border-zinc-800/80 overflow-hidden"
+>
+  <Container size="lg">
+    <div
+      class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4"
+    >
+      <div class="space-y-3 max-w-2xl">
+        <Badge variant="zinc" size="sm">Trabalho em Rede</Badge>
+        <h2
+          class="text-3xl sm:text-4xl font-bold font-heading text-white tracking-tight"
+        >
+          Quem Corre Conosco
+        </h2>
+      </div>
+
+      <a
+        href="/parcerias"
+        class="inline-flex items-center gap-2 text-sm font-sans font-semibold text-orange-500 hover:text-orange-400 transition-colors"
+      >
+        <span>Ver todos os parceiros</span>
+        <svg
+          class="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+        </svg>
+      </a>
+    </div>
+  </Container>
+
+  <!-- Infinite Marquee Track with Masked Edges -->
+  <div class="relative w-full overflow-hidden py-4">
+    <!-- Left Fade Gradient -->
+    <div
+      class="absolute left-0 top-0 bottom-0 w-20 sm:w-32 bg-gradient-to-r from-zinc-950 to-transparent z-10 pointer-events-none"
+    >
+    </div>
+
+    <!-- Right Fade Gradient -->
+    <div
+      class="absolute right-0 top-0 bottom-0 w-20 sm:w-32 bg-gradient-to-l from-zinc-950 to-transparent z-10 pointer-events-none"
+    >
+    </div>
+
+    <div class="animate-marquee flex items-center gap-8 px-4">
+      {
+        doubleLogos.map((partner) => (
+          <div
+            class={`h-24 sm:h-28 w-56 sm:w-64 rounded-3xl overflow-hidden flex items-center justify-center shrink-0 border transition-all duration-500 group shadow-xl ${
+              partner.logoFit === "cover" ? "p-0" : "px-6 py-4"
+            } ${
+              partner.whiteBg
+                ? "bg-white border-white hover:shadow-2xl hover:shadow-white/20"
+                : "bg-zinc-900/90 border-zinc-800/80 hover:border-orange-500/40 hover:bg-zinc-900"
+            }`}
+          >
+            <Image
+              src={partner.image}
+              alt={partner.name}
+              class={`w-full h-full ${partner.logoFit === "cover" ? "object-cover" : "max-h-full max-w-full object-contain"} ${partner.logoScale || ""} transition-transform duration-500 group-hover:scale-105`}
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
