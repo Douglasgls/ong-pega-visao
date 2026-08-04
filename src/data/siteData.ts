@@ -1,8 +1,8 @@
 export const siteData = {
   name: 'Instituto Pega a Visão',
-  shortName: 'Pega a Visão',
+  shortName: 'Pega Visão',
   tagline: 'Cultura urbana, arte, esporte e transformação social na periferia',
-  description: 'O Instituto Pega a Visão é um coletivo social que atua na periferia promovendo oportunidade, cultura urbana, formação artística, cidadania e esporte para jovens.',
+  description: 'O Instituto Pega Visão é uma OSC que atua com adolescentes e jovens privados de liberdade promovendo oportunidade, escuta, diálogo, arte, cultura, esportes, educação, acolhimento e formação cidadã para juventude periférica.',
   contact: {
     address: 'São Paulo - SP, Brasil',
     email: 'projetos@pegavisao.org.br',

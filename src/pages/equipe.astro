@@ -9,6 +9,29 @@ import TeamMemberCard from "../components/sections/TeamMemberCard.astro";
 import imgAlinne from "../assets/equipe/alinne.jpg";
 import imgMilhem from "../assets/equipe/Milhem-Cortaz_FCASA-68-1024x683.jpg";
 import imgDebora from "../assets/equipe/debora.png";
+import imgChaleks from "../assets/equipe/mc_chaleks.jpg";
+import imgRk9 from "../assets/equipe/rk9_image_5_300x300.png";
+import imgKarine from "../assets/equipe/karine_image_4_300x300.png";
+import imgMarcelo from "../assets/equipe/marcelo_image_3_300x300.png";
+import imgLucas from "../assets/equipe/lucas_image_6_300x300.png";
+import imgJow from "../assets/equipe/jow_image-8-300x300.png";
+
+// Photos from assets/voluntarios/
+import imgMcFilhote from "../assets/voluntarios/mc_fiote_image_7_300x300.png";
+import imgMatheus from "../assets/voluntarios/matheus_image-9-300x300.png";
+import imgThiagsson from "../assets/voluntarios/Thiagsson_Chaleks_002-2-300x225.jpeg";
+import imgChefEdson from "../assets/voluntarios/chef_edson_leite_GP_003-300x225.jpeg";
+import imgNayara from "../assets/voluntarios/nayara_image-10-300x300.png";
+import imgJaco from "../assets/voluntarios/jaco_image-14-300x300.png";
+
+const voluntarios = [
+  { name: "Mc Filhote", image: imgMcFilhote },
+  { name: "Matheus Santos", image: imgMatheus },
+  { name: "Thiagsson", image: imgThiagsson },
+  { name: "Chef Edson Leite", image: imgChefEdson },
+  { name: "Nayara Capello", image: imgNayara },
+  { name: "Jacó", image: imgJaco },
+];
 ---
 
 <BaseLayout
@@ -56,9 +79,7 @@ import imgDebora from "../assets/equipe/debora.png";
         </div>
 
         <!-- Grid Editorial de Integrantes -->
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch"
-        >
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <!-- 1. Alinne Almeida -->
           <TeamMemberCard
             name="Alinne Almeida"
@@ -71,7 +92,7 @@ import imgDebora from "../assets/equipe/debora.png";
             }}
           />
 
-          <!-- 2. Milhem Cortaz (Destaque visual / leve deslocamento em telas lg) -->
+          <!-- 2. Milhem Cortaz -->
           <TeamMemberCard
             name="Milhem Cortaz"
             role="Fundador & Vice Presidente"
@@ -80,7 +101,6 @@ import imgDebora from "../assets/equipe/debora.png";
             socialLinks={{
               instagram: "https://www.instagram.com/cortaz",
             }}
-            class="lg:-translate-y-4"
           />
 
           <!-- 3. Débora Antunes -->
@@ -90,12 +110,105 @@ import imgDebora from "../assets/equipe/debora.png";
             bio="Liderança que faz acontecer: conecta comunidades, fortalece projetos sociais e amplia oportunidades para jovens e famílias."
             image={imgDebora}
           />
+
+          <!-- 4. MC Chaleks -->
+          <TeamMemberCard
+            name="MC Chaleks"
+            role="Co-Fundador & Coordenador"
+            bio="Artista da cena do funk consciente e rap/trap ligado à região do ABC Paulista (São Paulo)."
+            image={imgChaleks}
+            socialLinks={{
+              instagram: "https://www.instagram.com/chaleks_mc",
+            }}
+          />
+
+          <!-- 5. Ronaldo RK9 -->
+          <TeamMemberCard
+            name="Ronaldo RK9"
+            role="Co-Fundador & Educador"
+            bio="Adestrador Canino Internacional, Cinotécnico, Responsável pelos Dogs de Comerciais e Séries Netflix."
+            image={imgRk9}
+            socialLinks={{
+              instagram: "https://www.instagram.com/eusourk9",
+            }}
+          />
+
+          <!-- 6. Karine Vieira -->
+          <TeamMemberCard
+            name="Karine Vieira"
+            role="Assistente Social Voluntária"
+            bio="CEO do Instituto Responsa, Parceira do Pega Visão & Assistente Social Voluntária."
+            image={imgKarine}
+            socialLinks={{
+              instagram: "https://www.instagram.com/responsapro",
+            }}
+          />
+
+          <!-- 7. Marcelo Liotti -->
+          <TeamMemberCard
+            name="Marcelo Liotti"
+            role="Psicólogo Voluntário"
+            bio="Psicólogo Especialista em infância e juventude"
+            image={imgMarcelo}
+          />
+
+          <!-- 8. Lucas Bastos -->
+          <TeamMemberCard
+            name="Lucas Bastos"
+            role="Psicólogo Voluntário"
+            bio="Psicólogo Especialista em Juventude"
+            image={imgLucas}
+          />
+
+          <!-- 9. Jow William -->
+          <TeamMemberCard
+            name="Jow William"
+            role="VideoMaker"
+            bio="Fotográfo & VideoMaker Voluntário"
+            image={imgJow}
+            socialLinks={{
+              instagram: "https://www.instagram.com/eowjow",
+            }}
+          />
+        </div>
+      </Container>
+    </section>
+
+    <!-- SEÇÃO DE VOLUNTÁRIOS -->
+    <section class="py-24 sm:py-32 bg-zinc-950 border-t border-zinc-800/80">
+      <Container size="lg">
+        <div class="max-w-3xl mb-16 space-y-3">
+          <Badge variant="zinc" size="sm">Apoio & Colaboração</Badge>
+          <h2
+            class="text-3xl sm:text-4xl font-bold font-heading text-white tracking-tight"
+          >
+            Voluntários
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {voluntarios.map((voluntario) => (
+            <div class="bg-zinc-900/80 border border-zinc-800/80 rounded-2xl overflow-hidden group hover:border-orange-500/40 hover:shadow-2xl hover:shadow-orange-500/5 transition-all duration-500 flex flex-col">
+              <div class="relative h-64 sm:h-72 w-full overflow-hidden bg-zinc-950">
+                <Image
+                  src={voluntario.image}
+                  alt={voluntario.name}
+                  class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <div class="py-3 px-4 text-center">
+                <h3 class="text-base sm:text-lg font-bold font-heading text-white tracking-tight">
+                  {voluntario.name}
+                </h3>
+              </div>
+            </div>
+          ))}
         </div>
       </Container>
     </section>
 
     <!-- INTRODUÇÃO INSTITUCIONAL -->
-    <section class="py-24 sm:py-32 bg-zinc-950">
+    <section class="py-24 sm:py-32 bg-zinc-900/30 border-t border-zinc-800/80">
       <Container size="lg">
         <div class="max-w-4xl space-y-8">
           <div>
