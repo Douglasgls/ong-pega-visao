@@ -30,7 +30,7 @@ const {
 ---
 
 <div
-  class={`bg-zinc-900/80 border border-zinc-800/80 rounded-3xl p-6 sm:p-8 hover:border-zinc-700 transition-all duration-500 group flex flex-col justify-between h-full shadow-xl ${className}`}
+  class={`bg-zinc-900/60 border border-zinc-800/80 rounded-3xl p-6 sm:p-8 hover:border-orange-500/40 transition-all duration-300 group flex flex-col justify-between h-full shadow-xl ${className}`}
 >
   <div class="space-y-5">
     <!-- Header com Logo ou Container Cinza Placeholder -->
@@ -38,7 +38,7 @@ const {
       {
         logo ? (
           <div
-            class={`h-14 w-32 rounded-2xl ${logoFit === "cover" ? "p-0" : "p-2"} flex items-center justify-center overflow-hidden ${logoWhiteBg ? "bg-white border border-white" : "bg-zinc-950/80 border border-zinc-800/80"}`}
+            class={`h-14 w-32 rounded-2xl ${logoFit === "cover" ? "p-0" : "p-2"} flex items-center justify-center overflow-hidden ${logoWhiteBg ? "bg-white/95 border border-white/20 shadow-sm" : "bg-zinc-950/80 border border-zinc-800/80"}`}
           >
             <Image
               src={logo}

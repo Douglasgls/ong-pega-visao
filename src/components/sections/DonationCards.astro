@@ -1,0 +1,708 @@
+---
+import Container from "../common/Container.astro";
+import Badge from "../common/Badge.astro";
+import Button from "../common/Button.astro";
+import { siteData } from "../../data/siteData";
+
+const pixKey = siteData.pix.key;
+const pixQrCodeMock = siteData.pix.qrCodeMock;
+const bankDetails = `${siteData.pix.beneficiary} | CNPJ: ${siteData.pix.cnpj} | ${siteData.pix.bank} | Ag: ${siteData.pix.agency} | CC: ${siteData.pix.account}`;
+---
+
+<section id="formas-de-doar" class="py-16 sm:py-24 bg-zinc-950 relative scroll-mt-16">
+  <!-- Subtle ambient background glow -->
+  <div
+    class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-6xl h-96 bg-orange-600/5 rounded-full filter blur-3xl pointer-events-none"
+  >
+  </div>
+
+  <Container size="lg" class="relative z-10 space-y-14">
+    <!-- Header da seção -->
+    <div class="max-w-2xl space-y-2">
+      <h2
+        class="text-2xl sm:text-3xl lg:text-4xl font-bold font-heading text-white tracking-tight"
+      >
+        Formas de Apoiar
+      </h2>
+      <p class="text-sm sm:text-base text-zinc-400 font-sans leading-relaxed">
+        Escolha a opção que funciona melhor para você. Cada contribuição fortalece diretamente a juventude atendida.
+      </p>
+    </div>
+
+    <!-- 3 Cards Grid com Distribuição e Alturas Harmoniosas -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+      
+      <!-- CARD 1: Doação Recorrente (Semanal / Mensal) -->
+      <div
+        class="relative bg-zinc-900/70 border border-zinc-800/80 hover:border-orange-500/60 rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-xl transition-all duration-300 hover:-translate-y-1 group"
+      >
+        <!-- Badge Destaque "Mais impacto" -->
+        <div class="absolute -top-3 left-6">
+          <span
+            class="inline-flex items-center gap-1.5 bg-gradient-to-r from-orange-500 to-amber-500 text-zinc-950 text-xs font-heading font-extrabold uppercase tracking-wider px-3 py-0.5 rounded-full shadow-md shadow-orange-600/30"
+          >
+            ★ Mais impacto
+          </span>
+        </div>
+
+        <div class="space-y-6 pt-1">
+          <!-- Card Header & Icon -->
+          <div class="space-y-3">
+            <div
+              class="w-12 h-12 rounded-2xl bg-orange-950/50 border border-orange-500/30 flex items-center justify-center text-orange-400"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-6 h-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold font-heading text-white">
+              Doação Recorrente
+            </h3>
+            <p class="text-xs sm:text-sm text-zinc-300 font-sans leading-relaxed">
+              Contribua periodicamente e ajude a garantir a continuidade das oficinas e do suporte psicossocial.
+            </p>
+          </div>
+
+          <!-- Exemplos de Impacto -->
+          <div class="space-y-2.5 pt-3 border-t border-zinc-800/80">
+            <span class="text-xs font-heading font-bold text-orange-400 uppercase tracking-wider block">
+              Exemplos de impacto:
+            </span>
+            <ul class="space-y-2 text-xs sm:text-sm text-zinc-300 font-sans">
+              <li class="flex items-center gap-2">
+                <span class="text-orange-400 font-bold font-heading whitespace-nowrap">R$ 20/mês</span>
+                <span class="text-zinc-400">→ apoia oficinas de arte</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-orange-400 font-bold font-heading whitespace-nowrap">R$ 50/mês</span>
+                <span class="text-zinc-400">→ suporte psicossocial</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-orange-400 font-bold font-heading whitespace-nowrap">R$ 100/mês</span>
+                <span class="text-zinc-400">→ formação cidadã</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Action Button -->
+        <div class="pt-6">
+          <button
+            type="button"
+            id="open-recurring-modal-btn"
+            class="w-full py-3.5 px-4 bg-orange-600 hover:bg-orange-500 text-white font-heading font-bold text-sm sm:text-base rounded-xl transition-all duration-200 shadow-md shadow-orange-600/30 hover:shadow-orange-600/50 flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <span>Apoiar Recorrentemente</span>
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 2: Pix Direto -->
+      <div
+        class="bg-zinc-900/70 border border-zinc-800/80 hover:border-zinc-700 rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-xl transition-all duration-300 hover:-translate-y-1"
+      >
+        <div class="space-y-5">
+          <!-- Card Header & Icon -->
+          <div class="space-y-3">
+            <div
+              class="w-12 h-12 rounded-2xl bg-zinc-800/80 border border-zinc-700/60 flex items-center justify-center text-orange-400"
+            >
+              <svg
+                class="w-6 h-6"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold font-heading text-white">
+              Pix Instantâneo
+            </h3>
+            <p class="text-xs sm:text-sm text-zinc-300 font-sans leading-relaxed">
+              Forma rápida, segura e sem taxas. O valor cai direto na conta do Instituto.
+            </p>
+          </div>
+
+          <!-- Chave Pix com Copiar -->
+          <div class="space-y-1.5">
+            <label class="text-xs font-sans text-zinc-400">Chave Pix (E-mail):</label>
+            <div
+              class="flex items-center justify-between bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-xs sm:text-sm text-zinc-200 group hover:border-orange-500/50 transition-colors"
+            >
+              <span class="font-mono truncate select-all">{pixKey}</span>
+              <button
+                type="button"
+                class="copy-btn p-1.5 rounded-lg bg-zinc-800 hover:bg-orange-600 text-zinc-300 hover:text-white transition-colors cursor-pointer ml-2 flex-shrink-0"
+                data-copy={pixKey}
+                aria-label="Copiar Chave Pix"
+                title="Copiar Chave Pix"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- QR Code Preview -->
+          <div class="flex flex-col items-center justify-center p-3 bg-zinc-950/80 border border-zinc-800/80 rounded-2xl space-y-1.5">
+            <div class="p-1.5 bg-white rounded-xl shadow-sm">
+              <img
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=${encodeURIComponent(pixQrCodeMock)}`}
+                alt="QR Code Pix Instituto Pega Visão"
+                class="w-24 h-24 sm:w-28 sm:h-28 object-contain"
+                loading="lazy"
+              />
+            </div>
+            <span class="text-[10px] text-zinc-400 font-sans">Aponte a câmera do seu banco</span>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="pt-6">
+          <button
+            type="button"
+            id="open-qrcode-modal-btn"
+            class="w-full py-3 px-4 bg-zinc-800/80 hover:bg-zinc-800 hover:text-white text-zinc-200 font-heading font-medium text-xs sm:text-sm rounded-xl border border-zinc-700/60 transition-colors flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <svg
+              class="w-4 h-4 text-orange-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+              ></path>
+            </svg>
+            <span>Ver QR Code ampliado</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 3: Doação por Cartão (PayPal) -->
+      <div
+        class="bg-zinc-900/70 border border-zinc-800/80 hover:border-zinc-700 rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-xl transition-all duration-300 hover:-translate-y-1"
+      >
+        <div class="space-y-6">
+          <!-- Card Header & Icon -->
+          <div class="space-y-3">
+            <div
+              class="w-12 h-12 rounded-2xl bg-zinc-800/80 border border-zinc-700/60 flex items-center justify-center text-orange-400"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-6 h-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                <line x1="2" y1="10" x2="22" y2="10"></line>
+              </svg>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold font-heading text-white">
+              Cartão de Crédito
+            </h3>
+            <p class="text-xs sm:text-sm text-zinc-300 font-sans leading-relaxed">
+              Contribua de forma rápida e segura com cartão de crédito via PayPal.
+            </p>
+          </div>
+
+          <!-- Sugestão de Valores -->
+          <div class="space-y-2.5 pt-2">
+            <label class="text-xs font-sans text-zinc-400 block">
+              Selecione uma sugestão de valor:
+            </label>
+            <div class="grid grid-cols-3 gap-2.5">
+              <button
+                type="button"
+                class="amount-select-btn py-3 px-2 text-center rounded-xl bg-zinc-950/90 border-2 border-zinc-800 text-sm sm:text-base font-heading font-bold text-zinc-200 hover:border-orange-500/70 hover:text-white transition-all cursor-pointer shadow-sm active:scale-95 flex items-center justify-center"
+                data-amount="25"
+              >
+                R$ 25
+              </button>
+              <button
+                type="button"
+                class="amount-select-btn py-3 px-2 text-center rounded-xl bg-orange-950/30 border-2 border-orange-500 text-sm sm:text-base font-heading font-bold text-orange-400 hover:border-orange-500 hover:text-white transition-all cursor-pointer shadow-md shadow-orange-950/30 active:scale-95 flex items-center justify-center"
+                data-amount="50"
+              >
+                R$ 50
+              </button>
+              <button
+                type="button"
+                class="amount-select-btn py-3 px-2 text-center rounded-xl bg-zinc-950/90 border-2 border-zinc-800 text-sm sm:text-base font-heading font-bold text-zinc-200 hover:border-orange-500/70 hover:text-white transition-all cursor-pointer shadow-sm active:scale-95 flex items-center justify-center"
+                data-amount="100"
+              >
+                R$ 100
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Button -->
+        <div class="pt-6">
+          <a
+            href="https://www.paypal.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            id="paypal-donate-link"
+            class="w-full py-3.5 px-4 bg-zinc-800 hover:bg-orange-600 text-zinc-100 hover:text-white font-heading font-bold text-sm sm:text-base rounded-xl border border-zinc-700 hover:border-orange-500 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer shadow-md"
+          >
+            <svg
+              class="w-5 h-5 text-sky-400 group-hover:text-white"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M20.067 8.478c.492.88.556 2.014.3 3.327-.74 3.799-3.212 5.94-7.054 5.94h-1.895a.864.864 0 0 0-.853.73l-.845 5.352-.036.216a.863.863 0 0 1-.853.729H4.67a.647.647 0 0 1-.64-.746l3.35-21.258a.864.864 0 0 1 .853-.73h6.435c3.08 0 5.253.704 6.002 2.684.348.917.378 1.947.086 3.125z"
+              ></path>
+            </svg>
+            <span>Doar com Cartão</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- DADOS BANCÁRIOS INSTITUCIONAIS (Lista vertical simples e direta) -->
+    <div
+      class="bg-zinc-900/60 border border-zinc-800/80 rounded-2xl p-6 sm:p-8 space-y-5"
+    >
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-zinc-800/80 pb-4">
+        <h4 class="text-base sm:text-lg font-bold font-heading text-white flex items-center gap-2.5">
+          <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+          </svg>
+          Transferência Bancária (TED / DOC / Jurídico)
+        </h4>
+
+        <button
+          type="button"
+          class="copy-btn px-4 py-2 rounded-xl bg-zinc-800 hover:bg-orange-600 text-xs sm:text-sm font-heading font-medium text-zinc-200 hover:text-white border border-zinc-700 hover:border-orange-500 transition-colors flex items-center gap-2 cursor-pointer w-full sm:w-auto justify-center"
+          data-copy={bankDetails}
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+          </svg>
+          <span>Copiar dados bancários</span>
+        </button>
+      </div>
+
+      <ul class="space-y-2.5 text-xs sm:text-sm font-sans divide-y divide-zinc-800/50">
+        <li class="flex flex-col sm:flex-row sm:items-center justify-between pt-1 gap-1">
+          <span class="text-zinc-400 font-medium">Favorecido:</span>
+          <span class="text-white font-semibold">{siteData.pix.beneficiary}</span>
+        </li>
+        <li class="flex flex-col sm:flex-row sm:items-center justify-between pt-2 gap-1">
+          <span class="text-zinc-400 font-medium">Banco:</span>
+          <span class="text-white font-semibold">{siteData.pix.bank} (341)</span>
+        </li>
+        <li class="flex flex-col sm:flex-row sm:items-center justify-between pt-2 gap-1">
+          <span class="text-zinc-400 font-medium">Agência:</span>
+          <span class="text-white font-semibold font-mono">{siteData.pix.agency}</span>
+        </li>
+        <li class="flex flex-col sm:flex-row sm:items-center justify-between pt-2 gap-1">
+          <span class="text-zinc-400 font-medium">Conta Corrente:</span>
+          <span class="text-white font-semibold font-mono">{siteData.pix.account}</span>
+        </li>
+        <li class="flex flex-col sm:flex-row sm:items-center justify-between pt-2 gap-1">
+          <span class="text-zinc-400 font-medium">CNPJ:</span>
+          <span class="text-orange-400 font-semibold font-mono">{siteData.pix.cnpj}</span>
+        </li>
+      </ul>
+    </div>
+  </Container>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 1: DOAÇÃO RECORRENTE / SEMANAL / MENSAL                             -->
+  <!-- ========================================================================= -->
+  <div
+    id="recurring-modal"
+    class="modal-backdrop fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4"
+    role="dialog"
+    aria-modal="true"
+  >
+    <div
+      class="modal-content relative bg-zinc-900 border border-zinc-800 rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl space-y-6 max-h-[90vh] overflow-y-auto"
+    >
+      <!-- Close button -->
+      <button
+        type="button"
+        class="modal-close-btn absolute top-4 right-4 p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors cursor-pointer active:scale-95"
+        aria-label="Fechar Modal"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+
+      <!-- Modal Header -->
+      <div class="space-y-2 pr-10">
+        <span class="inline-flex items-center gap-1.5 text-xs font-heading font-bold text-orange-500 uppercase tracking-widest bg-orange-950/60 px-3 py-1 rounded-full border border-orange-500/30">
+          Apoio Contínuo
+        </span>
+        <h3 class="text-xl sm:text-3xl font-bold font-heading text-white">
+          Como doar Semanal ou Mensalmente
+        </h3>
+        <p class="text-xs sm:text-sm text-zinc-300 font-sans leading-relaxed">
+          Ajude a manter nossas oficinas e acompanhamento ativos o ano todo.
+        </p>
+      </div>
+
+      <!-- Passo a passo visual clean -->
+      <div class="space-y-3.5 bg-zinc-950/50 p-4 sm:p-5 rounded-2xl border border-zinc-800/60 font-sans">
+        <h4 class="font-heading font-bold text-xs uppercase tracking-wider text-orange-400">
+          Passo a passo no app do seu banco:
+        </h4>
+        <ul class="space-y-2.5 text-zinc-300 text-xs sm:text-sm">
+          <li class="flex items-start gap-2.5">
+            <span class="w-5 h-5 rounded-full bg-zinc-800 text-orange-400 font-mono text-xs flex items-center justify-center flex-shrink-0 font-bold mt-0.5">1</span>
+            <span>Acesse a <strong class="text-white">Área Pix</strong> no aplicativo do seu banco.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="w-5 h-5 rounded-full bg-zinc-800 text-orange-400 font-mono text-xs flex items-center justify-center flex-shrink-0 font-bold mt-0.5">2</span>
+            <span>Selecione <strong class="text-white">Transferir</strong> e utilize a Chave Pix abaixo.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="w-5 h-5 rounded-full bg-zinc-800 text-orange-400 font-mono text-xs flex items-center justify-center flex-shrink-0 font-bold mt-0.5">3</span>
+            <span>Marque <strong class="text-orange-400 font-semibold">"Agendar"</strong> ou <strong class="text-orange-400 font-semibold">"Pix Recorrente"</strong> e defina a frequência (semanal ou mensal).</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Chave Pix com cópia fácil -->
+      <div class="space-y-2">
+        <label class="text-xs font-heading font-bold text-zinc-300 uppercase tracking-wide">
+          Chave Pix (E-mail):
+        </label>
+        <div class="flex items-center justify-between bg-zinc-950 border border-zinc-800 rounded-xl p-3 sm:p-3.5">
+          <span class="font-mono text-xs sm:text-base text-orange-400 font-semibold truncate select-all">
+            {pixKey}
+          </span>
+          <button
+            type="button"
+            class="copy-btn px-3.5 py-2 sm:px-4 sm:py-2 rounded-lg bg-orange-600 hover:bg-orange-500 text-white text-xs sm:text-sm font-heading font-bold transition-all cursor-pointer flex items-center gap-1.5 ml-2 flex-shrink-0 active:scale-95"
+            data-copy={pixKey}
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span>Copiar</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- QR Code e Pix Copia e Cola -->
+      <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 items-center bg-zinc-950/60 p-4 rounded-2xl border border-zinc-800">
+        <div class="sm:col-span-4 flex justify-center">
+          <div class="p-2 bg-white rounded-xl shadow">
+            <img
+              src={`https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(pixQrCodeMock)}`}
+              alt="QR Code Pix"
+              class="w-24 h-24 sm:w-28 sm:h-28 object-contain"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <div class="sm:col-span-8 space-y-2">
+          <span class="text-xs font-sans text-zinc-400 block">
+            Você também pode copiar o código <strong>Pix Copia e Cola</strong> completo:
+          </span>
+          <button
+            type="button"
+            class="copy-btn w-full py-3 px-3 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 hover:text-white text-xs sm:text-sm font-heading font-medium border border-zinc-700 transition-colors flex items-center justify-center gap-2 cursor-pointer active:scale-95"
+            data-copy={pixQrCodeMock}
+          >
+            <svg class="w-4 h-4 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span>Copiar Código Pix Completo</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="pt-2">
+        <button
+          type="button"
+          class="modal-close-btn w-full py-3.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white text-sm font-heading font-semibold transition-colors cursor-pointer active:scale-95"
+        >
+          Entendi, vou fazer pelo banco
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 2: QR CODE AMPLIADO                                                 -->
+  <!-- ========================================================================= -->
+  <div
+    id="qrcode-modal"
+    class="modal-backdrop fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4"
+    role="dialog"
+    aria-modal="true"
+  >
+    <div
+      class="modal-content relative bg-zinc-900 border border-zinc-800 rounded-3xl max-w-md w-full p-5 sm:p-8 shadow-2xl space-y-6 text-center"
+    >
+      <!-- Close button -->
+      <button
+        type="button"
+        class="modal-close-btn absolute top-4 right-4 p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors cursor-pointer active:scale-95"
+        aria-label="Fechar Modal"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+
+      <div class="space-y-1">
+        <h3 class="text-2xl font-bold font-heading text-white">
+          QR Code Pix
+        </h3>
+        <p class="text-xs sm:text-sm text-zinc-400 font-sans">
+          Aponte a câmera do aplicativo do seu banco para escanear
+        </p>
+      </div>
+
+      <!-- Large QR Code Frame -->
+      <div class="p-4 sm:p-6 bg-white rounded-2xl inline-block shadow-2xl mx-auto">
+        <img
+          src={`https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=${encodeURIComponent(pixQrCodeMock)}`}
+          alt="QR Code Pix Ampliado"
+          class="w-56 h-56 sm:w-64 sm:h-64 object-contain"
+          loading="lazy"
+        />
+      </div>
+
+      <!-- Chave Pix formatada com cópia -->
+      <div class="space-y-3 pt-2">
+        <div class="bg-zinc-950 p-3 rounded-xl border border-zinc-800">
+          <span class="text-xs text-zinc-400 font-sans block">Chave Pix:</span>
+          <span class="font-mono text-sm text-orange-400 font-bold select-all">{pixKey}</span>
+        </div>
+
+        <button
+          type="button"
+          class="copy-btn w-full py-3 px-4 bg-orange-600 hover:bg-orange-500 text-white font-heading font-bold text-sm rounded-xl transition-all cursor-pointer flex items-center justify-center gap-2 shadow-lg shadow-orange-600/30"
+          data-copy={pixKey}
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+          </svg>
+          <span>Copiar Chave Pix</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- TOAST FLUTUANTE DE FEEDBACK DE CÓPIA (Auto-ocultável em 2s)               -->
+  <!-- ========================================================================= -->
+  <div
+    id="copy-toast"
+    class="fixed bottom-8 left-1/2 z-[9999] pointer-events-none transition-all duration-300 ease-out opacity-0 translate-y-4"
+    style="visibility: hidden; transform: translateX(-50%) translateY(16px);"
+  >
+    <div class="inline-flex items-center gap-2.5 bg-zinc-900/95 text-zinc-100 text-xs sm:text-sm font-sans font-medium px-5 py-3 rounded-full border border-orange-500/70 shadow-2xl backdrop-blur-md">
+      <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+      </svg>
+      <span id="toast-message">Copiado para a área de transferência!</span>
+    </div>
+  </div>
+</section>
+
+<script>
+  let toastTimer: any = null;
+
+  // Toast helper com garantia absoluta de desaparecimento após 2 segundos
+  function showToast(msg = "Copiado para a área de transferência!") {
+    const toast = document.getElementById("copy-toast");
+    const toastMessage = document.getElementById("toast-message");
+    if (!toast) return;
+
+    if (toastMessage) {
+      toastMessage.textContent = msg;
+    }
+
+    if (toastTimer) {
+      clearTimeout(toastTimer);
+    }
+
+    // Exibir toast com transição suave
+    toast.style.visibility = "visible";
+    toast.style.opacity = "1";
+    toast.style.transform = "translateX(-50%) translateY(0px)";
+
+    // Desaparecer após 2000ms (2 segundos)
+    toastTimer = setTimeout(() => {
+      toast.style.opacity = "0";
+      toast.style.transform = "translateX(-50%) translateY(16px)";
+      setTimeout(() => {
+        toast.style.visibility = "hidden";
+      }, 350);
+    }, 2000);
+  }
+
+  // Delegação global de clique para cópia (executa apenas uma vez sem duplicidade)
+  if (!(window as any).__copyHandlerInitialized) {
+    (window as any).__copyHandlerInitialized = true;
+
+    document.addEventListener("click", async (e) => {
+      const target = (e.target as HTMLElement)?.closest(".copy-btn") as HTMLElement;
+      if (!target) return;
+
+      e.preventDefault();
+      e.stopPropagation();
+
+      const text = target.getAttribute("data-copy");
+      if (!text) return;
+
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          // Fallback para ambientes restritos
+          const textArea = document.createElement("textarea");
+          textArea.value = text;
+          textArea.style.position = "fixed";
+          textArea.style.opacity = "0";
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+          document.execCommand("copy");
+          document.body.removeChild(textArea);
+        }
+
+        // Feedback visual no botão
+        target.classList.add("bg-emerald-600", "text-white", "border-emerald-500");
+        showToast("Copiado para a área de transferência!");
+
+        setTimeout(() => {
+          target.classList.remove("bg-emerald-600", "text-white", "border-emerald-500");
+        }, 1800);
+      } catch (err) {
+        console.error("Erro ao copiar:", err);
+        showToast("Chave: " + text);
+      }
+    });
+  }
+
+  function setupDonationModals() {
+    const recurringModal = document.getElementById("recurring-modal");
+    const qrcodeModal = document.getElementById("qrcode-modal");
+    const openRecurringBtn = document.getElementById("open-recurring-modal-btn");
+    const openQrcodeBtn = document.getElementById("open-qrcode-modal-btn");
+    const closeButtons = document.querySelectorAll(".modal-close-btn");
+    const amountButtons = document.querySelectorAll(".amount-select-btn");
+
+    function openModal(modal: HTMLElement | null) {
+      if (!modal) return;
+      modal.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal(modal: HTMLElement | null) {
+      if (!modal) return;
+      modal.classList.add("hidden");
+      document.body.style.overflow = "";
+    }
+
+    openRecurringBtn?.addEventListener("click", () => openModal(recurringModal));
+    openQrcodeBtn?.addEventListener("click", () => openModal(qrcodeModal));
+
+    closeButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        closeModal(recurringModal);
+        closeModal(qrcodeModal);
+      });
+    });
+
+    [recurringModal, qrcodeModal].forEach((modal) => {
+      modal?.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          closeModal(modal);
+        }
+      });
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeModal(recurringModal);
+        closeModal(qrcodeModal);
+      }
+    });
+
+    // Botões de valor sugerido
+    amountButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        amountButtons.forEach((b) => {
+          b.classList.remove(
+            "border-orange-500",
+            "text-orange-400",
+            "bg-orange-950/30",
+            "shadow-md",
+            "shadow-orange-950/30"
+          );
+          b.classList.add("border-zinc-800", "text-zinc-200", "bg-zinc-950/90");
+        });
+        btn.classList.remove("border-zinc-800", "text-zinc-200", "bg-zinc-950/90");
+        btn.classList.add(
+          "border-orange-500",
+          "text-orange-400",
+          "bg-orange-950/30",
+          "shadow-md",
+          "shadow-orange-950/30"
+        );
+      });
+    });
+  }
+
+  setupDonationModals();
+  document.addEventListener("astro:page-load", setupDonationModals);
+</script>

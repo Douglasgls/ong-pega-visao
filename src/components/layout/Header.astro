@@ -61,7 +61,7 @@ const { currentPath = Astro.url.pathname } = Astro.props;
 
       <!-- Action Button -->
       <div class="hidden sm:flex items-center gap-3">
-        <Button href="/contato" variant="primary" size="sm">
+        <Button href="/doar" variant="primary" size="sm">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="w-4 h-4"
@@ -83,7 +83,7 @@ const { currentPath = Astro.url.pathname } = Astro.props;
       <button
         id="mobile-menu-button"
         type="button"
-        class="lg:hidden p-2 rounded-lg text-zinc-300 hover:text-white hover:bg-zinc-800 focus:outline-none"
+        class="lg:hidden p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl text-zinc-300 hover:text-white hover:bg-zinc-800 focus:outline-none transition-colors active:scale-95"
         aria-label="Abrir Menu"
       >
         <svg
@@ -119,7 +119,7 @@ const { currentPath = Astro.url.pathname } = Astro.props;
   <!-- Mobile Drawer -->
   <div
     id="mobile-menu"
-    class="lg:hidden hidden fixed inset-x-0 top-[73px] bg-zinc-950/95 backdrop-blur-xl border-b border-zinc-800/80 px-4 pt-4 pb-6 shadow-2xl transition-all duration-300"
+    class="lg:hidden hidden fixed inset-x-0 top-[69px] bg-zinc-950/98 backdrop-blur-2xl border-b border-zinc-800/90 px-5 pt-4 pb-8 shadow-2xl transition-all duration-300 max-h-[calc(100vh-70px)] overflow-y-auto"
   >
     <div class="flex flex-col space-y-2">
       {
@@ -130,7 +130,7 @@ const { currentPath = Astro.url.pathname } = Astro.props;
           return (
             <a
               href={link.href}
-              class={`text-base font-heading font-medium px-4 py-3 rounded-lg transition-colors ${
+              class={`text-base font-heading font-medium px-4 py-3 rounded-xl transition-colors mobile-nav-link ${
                 isActive
                   ? "text-orange-500 bg-orange-950/40 border border-orange-500/30"
                   : "text-zinc-200 hover:bg-zinc-900"
@@ -142,69 +142,115 @@ const { currentPath = Astro.url.pathname } = Astro.props;
         })
       }
       <div class="pt-4 border-t border-zinc-800/80">
-        <Button href="/contato" variant="primary" size="md" class="w-full">
+        <a
+          href="/doar"
+          class="mobile-nav-link w-full py-3.5 px-4 bg-orange-600 hover:bg-orange-500 text-white font-heading font-bold text-base rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg shadow-orange-600/30 active:scale-95"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="w-4 h-4"
+            class="w-5 h-5"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            ><path
-              d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"
-            ></path></svg
           >
+            <path
+              d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"
+            ></path>
+          </svg>
           Doar Agora
-        </Button>
+        </a>
       </div>
     </div>
   </div>
 </header>
 
 <script>
-  const header = document.getElementById("main-header");
-  const menuButton = document.getElementById("mobile-menu-button");
-  const mobileMenu = document.getElementById("mobile-menu");
-  const hamburgerIcon = document.getElementById("hamburger-icon");
-  const closeIcon = document.getElementById("close-icon");
+  function setupHeader() {
+    const header = document.getElementById("main-header");
+    const menuButton = document.getElementById("mobile-menu-button");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const hamburgerIcon = document.getElementById("hamburger-icon");
+    const closeIcon = document.getElementById("close-icon");
+    const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
 
-  // Handle header scroll state
-  function updateHeaderState() {
-    if (window.scrollY > 20) {
-      header?.classList.add(
-        "bg-zinc-950/90",
-        "backdrop-blur-md",
-        "border-zinc-800/60",
-        "py-3",
-      );
-      header?.classList.remove("py-4", "border-transparent");
-    } else {
-      header?.classList.remove(
-        "bg-zinc-950/90",
-        "backdrop-blur-md",
-        "border-zinc-800/60",
-        "py-3",
-      );
-      header?.classList.add("py-4", "border-transparent");
+    // Header scroll blur effect
+    function updateHeaderState() {
+      if (!header) return;
+      if (window.scrollY > 20) {
+        header.classList.add(
+          "bg-zinc-950/90",
+          "backdrop-blur-md",
+          "border-zinc-800/60",
+          "py-3"
+        );
+        header.classList.remove("py-4", "border-transparent");
+      } else {
+        header.classList.remove(
+          "bg-zinc-950/90",
+          "backdrop-blur-md",
+          "border-zinc-800/60",
+          "py-3"
+        );
+        header.classList.add("py-4", "border-transparent");
+      }
     }
+
+    window.removeEventListener("scroll", updateHeaderState);
+    window.addEventListener("scroll", updateHeaderState, { passive: true });
+    updateHeaderState();
+
+    function closeMenu() {
+      if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
+        mobileMenu.classList.add("hidden");
+        hamburgerIcon?.classList.remove("hidden");
+        closeIcon?.classList.add("hidden");
+      }
+    }
+
+    function toggleMenu() {
+      if (!mobileMenu) return;
+      const isClosed = mobileMenu.classList.contains("hidden");
+      if (isClosed) {
+        mobileMenu.classList.remove("hidden");
+        hamburgerIcon?.classList.add("hidden");
+        closeIcon?.classList.remove("hidden");
+      } else {
+        closeMenu();
+      }
+    }
+
+    // Attach click listener cleanly (cloneNode removes stale event listeners)
+    if (menuButton) {
+      menuButton.onclick = (e) => {
+        e.stopPropagation();
+        toggleMenu();
+      };
+    }
+
+    // Auto-close when clicking links
+    mobileNavLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        closeMenu();
+      });
+    });
+
+    // Close on outside click
+    document.addEventListener("click", (event) => {
+      if (
+        mobileMenu &&
+        !mobileMenu.classList.contains("hidden") &&
+        !mobileMenu.contains(event.target as Node) &&
+        !menuButton?.contains(event.target as Node)
+      ) {
+        closeMenu();
+      }
+    });
   }
 
-  window.addEventListener("scroll", updateHeaderState);
-  updateHeaderState();
-
-  // Handle mobile menu toggle
-  menuButton?.addEventListener("click", () => {
-    const isExpanded = mobileMenu?.classList.contains("hidden");
-    if (isExpanded) {
-      mobileMenu?.classList.remove("hidden");
-      hamburgerIcon?.classList.add("hidden");
-      closeIcon?.classList.remove("hidden");
-    } else {
-      mobileMenu?.classList.add("hidden");
-      hamburgerIcon?.classList.remove("hidden");
-      closeIcon?.classList.add("hidden");
-    }
-  });
+  // Initialize on direct load and on client-side router navigation
+  setupHeader();
+  document.addEventListener("astro:page-load", setupHeader);
 </script>

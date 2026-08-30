@@ -1,0 +1,16 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import DonationHero from "../components/sections/DonationHero.astro";
+import DonationCards from "../components/sections/DonationCards.astro";
+---
+
+<BaseLayout
+  title="Como Apoiar"
+  description="Apoie o Instituto Pega a Visão. Faça sua doação via Pix, doação mensal/semanal ou cartão e ajude a transformar a juventude periférica."
+>
+  <!-- Hero Split: Imagem de impacto + Texto inspirador com botão para descer até as opções de doação -->
+  <DonationHero />
+
+  <!-- Trio de Cards de Doação (Recorrente, Pix Direto e Cartão/PayPal) -->
+  <DonationCards />
+</BaseLayout>

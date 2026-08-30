@@ -13,17 +13,17 @@ const currentYear = new Date().getFullYear();
 >
   <Container size="lg">
     <div
-      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-8 pb-12 border-b border-zinc-800/60"
+      class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 pb-12 border-b border-zinc-800/60 items-start text-center md:text-left"
     >
       <!-- Brand column -->
-      <div class="lg:col-span-2 space-y-4">
-        <a href="/" class="flex items-center gap-3 group">
+      <div class="space-y-4 max-w-md mx-auto md:mx-0 flex flex-col items-center md:items-start">
+        <a href="/" class="flex items-center gap-3 group justify-center md:justify-start">
           <Image
             src={logoImg}
             alt="Instituto Pega a Visão Logo"
             class="h-12 w-auto object-contain"
           />
-          <div class="flex flex-col leading-none">
+          <div class="flex flex-col leading-none text-left">
             <span
               class="font-heading font-bold text-xl text-white tracking-wide uppercase"
               >Pega a Visão</span
@@ -34,15 +34,15 @@ const currentYear = new Date().getFullYear();
             >
           </div>
         </a>
-        <p class="text-sm text-zinc-400 leading-relaxed max-w-sm">
+        <p class="text-sm text-zinc-400 leading-relaxed text-center md:text-left">
           {siteData.description}
         </p>
-        <div class="pt-2 flex items-center space-x-3">
+        <div class="pt-2 flex items-center justify-center md:justify-start space-x-3">
           <a
             href={siteData.contact.instagram}
             target="_blank"
             rel="noopener noreferrer"
-            class="w-10 h-10 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-orange-500 hover:border-orange-500/50 transition-colors"
+            class="w-10 h-10 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-orange-500 hover:border-orange-500/50 transition-colors active:scale-95"
             aria-label="Instagram"
           >
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
@@ -54,59 +54,17 @@ const currentYear = new Date().getFullYear();
         </div>
       </div>
 
-      <!-- Quick Links -->
-      <!-- <div class="space-y-3">
-        <h3 class="font-heading text-sm uppercase tracking-wider font-semibold text-white">Navegação</h3>
-        <ul class="space-y-2 text-sm">
-          <li><a href="/" class="hover:text-orange-500 transition-colors">Home</a></li>
-          <li><a href="/quem-somos" class="hover:text-orange-500 transition-colors">Quem Somos</a></li>
-          <li><a href="/o-que-fazemos" class="hover:text-orange-500 transition-colors">O Que Fazemos</a></li>
-          <li><a href="/projetos" class="hover:text-orange-500 transition-colors">Projetos</a></li>
-          <li><a href="/equipe" class="hover:text-orange-500 transition-colors">Equipe</a></li>
-        </ul>
-      </div> -->
-
-      <!-- Institutional Links -->
-      <!-- <div class="space-y-3">
-        <h3
-          class="font-heading text-sm uppercase tracking-wider font-semibold text-white"
-        >
-          Institucional
-        </h3>
-        <ul class="space-y-2 text-sm">
-          <li>
-            <a
-              href="/transparencia"
-              class="hover:text-orange-500 transition-colors">Transparência</a>
-          </li>
-          <li>
-            <a href="/parcerias" class="hover:text-orange-500 transition-colors"
-              >Parcerias</a>
-          </li>
-          <li>
-            <a href="/contato" class="hover:text-orange-500 transition-colors"
-              >Contato</a>
-          </li>
-          <li>
-            <a
-              href="/contato"
-              class="hover:text-orange-500 transition-colors text-orange-400 font-medium"
-              >Doações PIX</a>
-          </li>
-        </ul>
-      </div> -->
-
       <!-- Contact Info -->
-      <div class="space-y-3">
+      <div class="space-y-4 max-w-sm mx-auto md:mx-0 md:ml-auto flex flex-col items-center md:items-start text-center md:text-left">
         <h3
           class="font-heading text-sm uppercase tracking-wider font-semibold text-white"
         >
           Contato
         </h3>
-        <ul class="space-y-2 text-sm">
-          <li class="flex items-start gap-2">
+        <ul class="space-y-2.5 text-sm flex flex-col items-center md:items-start">
+          <li class="flex items-center justify-center md:justify-start gap-2 text-center md:text-left">
             <svg
-              class="w-4 h-4 text-orange-500 mt-1 flex-shrink-0"
+              class="w-4 h-4 text-orange-500 flex-shrink-0"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -123,7 +81,7 @@ const currentYear = new Date().getFullYear();
             >
             <span>{siteData.contact.address}</span>
           </li>
-          <li class="flex items-center gap-2">
+          <li class="flex items-center justify-center md:justify-start gap-2 text-center md:text-left">
             <svg
               class="w-4 h-4 text-orange-500 flex-shrink-0"
               fill="none"
@@ -143,20 +101,20 @@ const currentYear = new Date().getFullYear();
             >
           </li>
         </ul>
-        <!--<div class="pt-2">
-          <Button href="/contato" variant="primary" size="sm" class="w-full">
+        <div class="pt-2 w-full max-w-xs mx-auto md:mx-0">
+          <Button href="/doar" variant="primary" size="sm" class="w-full justify-center text-center">
             Apoie Nossos Projetos
           </Button>
-        </div>-->
+        </div>
       </div>
     </div>
 
     <!-- Bottom Bar -->
     <div
-      class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500 border-t border-zinc-800/60"
+      class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500 border-t border-zinc-800/60 text-center sm:text-left"
     >
       <p>© {currentYear} {siteData.name}. Todos os direitos reservados.</p>
-      <p class="text-zinc-500 flex items-center gap-1.5">
+      <p class="text-zinc-500 flex items-center justify-center sm:justify-start gap-1.5">
         Desenvolvido por
         <a
           href="https://www.linkedin.com/in/douglas-paz-b19a61158/"

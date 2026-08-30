@@ -37,10 +37,10 @@ const featuredProjects = projectsData.slice(0, 3);
   <HeroSection />
 
   <!-- SEÇÃO 2: Card Institucional (Texto + Imagem) -->
-  <section class="py-20 sm:py-28 bg-zinc-950">
+  <section class="py-24 sm:py-32 bg-zinc-950">
     <Container size="lg">
       <div
-        class="bg-zinc-900/80 border border-zinc-800/80 rounded-3xl p-8 sm:p-12 lg:p-16 shadow-2xl relative overflow-hidden"
+        class="bg-zinc-900/70 border border-zinc-800/80 rounded-3xl p-8 sm:p-12 lg:p-14 shadow-2xl relative overflow-hidden"
       >
         <div
           class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center"
@@ -49,8 +49,6 @@ const featuredProjects = projectsData.slice(0, 3);
           <div class="lg:col-span-6 space-y-6">
             <div class="inline-flex items-center gap-2">
               <Badge variant="zinc" size="md">Instituto Pega Visão</Badge>
-              <!--<span class="text-xs text-zinc-400 font-sans">São Paulo • SP</span
-              >-->
             </div>
 
             <h2
@@ -59,40 +57,20 @@ const featuredProjects = projectsData.slice(0, 3);
               Cultura, acolhimento e oportunidade na periferia.
             </h2>
 
-            <p
-              class="text-base sm:text-lg text-zinc-300 font-sans leading-relaxed"
-            >
-              Todos os dias, jovens enfrentam barreiras que limitam seus sonhos.
-            </p>
-            <p
-              class="text-base sm:text-lg text-zinc-300 font-sans leading-relaxed"
-            >
-              O Instituto Pega Visão existe para mudar essa realidade, criando
-              espaços de escuta, pertencimento e desenvolvimento.
-            </p>
-
-            <p
-              class="text-base sm:text-lg text-zinc-300 font-sans leading-relaxed"
-            >
-              Acreditamos que a arte educa, a cultura conecta, os vínculos
-              transformam e que nenhuma trajetória deve ser definida pelo
-              passado.
-            </p>
-
-            <!-- <div class="pt-4 flex flex-wrap items-center gap-4">
-              <Button href="/quem-somos" variant="primary" size="md">
-                Conheça Nossa História
-              </Button>
-              <Button href="/o-que-fazemos" variant="outline" size="md">
-                O Que Fazemos
-              </Button>
-            </div>-->
+            <div class="space-y-4 text-base sm:text-lg text-zinc-300 font-sans leading-relaxed">
+              <p>
+                Todos os dias, jovens enfrentam barreiras que limitam seus sonhos. O Instituto Pega Visão existe para mudar essa realidade, criando espaços de escuta, pertencimento e desenvolvimento.
+              </p>
+              <p>
+                Acreditamos que a arte educa, a cultura conecta, os vínculos transformam e que nenhuma trajetória deve ser definida pelo passado.
+              </p>
+            </div>
           </div>
 
           <!-- Imagem Institucional -->
           <div class="lg:col-span-6">
             <div
-              class="relative rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-950 shadow-xl group"
+              class="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-zinc-800 bg-zinc-950 shadow-xl group"
             >
               <Image
                 src={instCardImg}
@@ -116,9 +94,9 @@ const featuredProjects = projectsData.slice(0, 3);
   <section
     class="py-24 sm:py-32 bg-zinc-950 border-t border-zinc-800/80 overflow-hidden relative"
   >
-    <!-- Brilho ambiente sutil -->
+    <!-- Brilho ambiente sutil / Ambient Glow Orb -->
     <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-orange-950/10 rounded-full filter blur-[120px] pointer-events-none"
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-600/10 rounded-full filter blur-[140px] pointer-events-none"
     >
     </div>
 
@@ -200,7 +178,7 @@ const featuredProjects = projectsData.slice(0, 3);
   </section>
 
   <!-- SEÇÃO 3: Conheça Nossos Projetos -->
-  <section class="py-20 sm:py-28 bg-zinc-900/30 border-t border-zinc-800/80">
+  <section class="py-24 sm:py-32 bg-zinc-900/30 border-t border-zinc-800/80">
     <Container size="lg">
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
         <SectionTitle
