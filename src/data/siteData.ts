@@ -11,13 +11,16 @@ export const siteData = {
     linkedin: 'https://linkedin.com',
   },
   pix: {
-    key: 'projetos@pegavisao.org.br',
-    qrCodeMock: '00020126580014BR.GOV.BCB.PIX0114pegavisao@org520400005303986540510.005802BR5924INSTITUTO PEGA A VISAO6009SAO PAULO62070503***6304E2CA',
-    bank: 'Banco Itaú',
+    key: '67.950.173/0001-41',
+    qrCodePayload: '00020126580014br.gov.bcb.pix0136adc0710e-382f-4f4d-85d5-f0dd33799f145204000053039865802BR5920INSTITUTO PEGA VISAO6009SAO PAULO622605225HyqcJ6oyRigVyF0KUNPpB630441D8',
     agency: '0001',
-    account: '12345-6',
-    cnpj: '00.000.000/0001-00',
-    beneficiary: 'Instituto Pega a Visão'
+    account: '7591156-3',
+    cnpj: '67.950.173/0001-41',
+    beneficiary: 'INSTITUTO PEGA VISAO'
+  },
+  paypal: {
+    donateUrl: 'https://www.paypal.com/ncp/payment/ADF2QBMNN5JN2',
+    campaignTitle: 'Transforme vidas por meio da saúde mental'
   },
   navLinks: [
     { label: 'Home', href: '/' },
