@@ -120,7 +120,6 @@ import Button from "../common/Button.astro";
 <script>
   function setupContactForm() {
     const form = document.getElementById("contact-form") as HTMLFormElement;
-    const feedback = document.getElementById("form-feedback");
     const subjectSelect = document.getElementById("subject") as HTMLSelectElement;
 
     // Check query parameter ?assunto=nova-parceria
@@ -135,20 +134,23 @@ import Button from "../common/Button.astro";
     // Se o formulário não existir na página, não faz nada
     if (!form) return;
 
-    // Remove event listeners antigos se existirem (para evitar duplicidade no ViewTransitions)
-    form.replaceWith(form.cloneNode(true));
-    const newForm = document.getElementById("contact-form") as HTMLFormElement;
-    const newFeedback = document.getElementById("form-feedback");
+    // Bug 1 fix: usa flag no window (e não no DOM) para controlar inicialização.
+    // O flag é resetado no astro:before-preparation, garantindo que o listener
+    // seja re-registrado corretamente após cada navegação via View Transitions.
+    if ((window as any).__contactFormInitialized) return;
+    (window as any).__contactFormInitialized = true;
 
-    newForm?.addEventListener("submit", async (e) => {
+    const feedback = document.getElementById("form-feedback");
+
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
       const accessKey = "607557a0-28f5-4f06-a367-c8524bd8eb62";
 
-      const formData = new FormData(newForm);
+      const formData = new FormData(form);
       formData.append("access_key", accessKey);
 
-      const submitBtn = newForm.querySelector('button[type="submit"]');
+      const submitBtn = form.querySelector('button[type="submit"]');
       const originalBtnText = submitBtn?.textContent || "Enviar Mensagem";
       if (submitBtn) submitBtn.textContent = "Enviando...";
 
@@ -161,39 +163,39 @@ import Button from "../common/Button.astro";
         const data = await response.json();
 
         if (data.success) {
-          if (newFeedback) {
-            newFeedback.classList.remove("hidden");
-            newFeedback.classList.remove(
+          if (feedback) {
+            feedback.classList.remove("hidden");
+            feedback.classList.remove(
               "bg-red-950/40",
               "border-red-500/40",
               "text-red-300",
             );
-            newFeedback.classList.add(
+            feedback.classList.add(
               "bg-orange-950/40",
               "border-orange-500/40",
               "text-orange-300",
             );
-            newFeedback.textContent =
+            feedback.textContent =
               "Obrigado pelo contato! Sua mensagem foi enviada com sucesso. Retornaremos em breve.";
-            newForm.reset();
+            form.reset();
           }
         } else {
           throw new Error(data.message || "Erro ao enviar.");
         }
       } catch (error) {
-        if (newFeedback) {
-          newFeedback.classList.remove("hidden");
-          newFeedback.classList.remove(
+        if (feedback) {
+          feedback.classList.remove("hidden");
+          feedback.classList.remove(
             "bg-orange-950/40",
             "border-orange-500/40",
             "text-orange-300",
           );
-          newFeedback.classList.add(
+          feedback.classList.add(
             "bg-red-950/40",
             "border-red-500/40",
             "text-red-300",
           );
-          newFeedback.textContent =
+          feedback.textContent =
             "Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente mais tarde.";
         }
       } finally {
@@ -202,7 +204,14 @@ import Button from "../common/Button.astro";
     });
   }
 
+  // Reseta o flag antes de cada navegação para que a próxima página
+  // possa re-registrar o listener normalmente (corrige Bug 1).
+  document.addEventListener("astro:before-preparation", () => {
+    (window as any).__contactFormInitialized = false;
+  });
+
   // Executa na carga inicial e também nas navegações (ViewTransitions)
   setupContactForm();
   document.addEventListener("astro:page-load", setupContactForm);
 </script>
+
