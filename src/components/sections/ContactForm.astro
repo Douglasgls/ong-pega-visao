@@ -118,79 +118,91 @@ import Button from "../common/Button.astro";
 </div>
 
 <script>
-  const form = document.getElementById("contact-form") as HTMLFormElement;
-  const feedback = document.getElementById("form-feedback");
-  const subjectSelect = document.getElementById("subject") as HTMLSelectElement;
+  function setupContactForm() {
+    const form = document.getElementById("contact-form") as HTMLFormElement;
+    const feedback = document.getElementById("form-feedback");
+    const subjectSelect = document.getElementById("subject") as HTMLSelectElement;
 
-  // Check query parameter ?assunto=nova-parceria
-  const urlParams = new URLSearchParams(window.location.search);
-  const assuntoParam = urlParams.get("assunto");
-  if (assuntoParam && subjectSelect) {
-    if (assuntoParam === "nova-parceria" || assuntoParam === "parceria") {
-      subjectSelect.value = "nova-parceria";
+    // Check query parameter ?assunto=nova-parceria
+    const urlParams = new URLSearchParams(window.location.search);
+    const assuntoParam = urlParams.get("assunto");
+    if (assuntoParam && subjectSelect) {
+      if (assuntoParam === "nova-parceria" || assuntoParam === "parceria") {
+        subjectSelect.value = "nova-parceria";
+      }
     }
-  }
 
-  form?.addEventListener("submit", async (e) => {
-    e.preventDefault();
+    // Se o formulário não existir na página, não faz nada
+    if (!form) return;
 
-    // ATENÇÃO: Substitua 'SUA_CHAVE_DE_ACESSO_AQUI' pela sua chave real do Web3Forms (obtida em https://web3forms.com)
-    const accessKey = "607557a0-28f5-4f06-a367-c8524bd8eb62";
+    // Remove event listeners antigos se existirem (para evitar duplicidade no ViewTransitions)
+    form.replaceWith(form.cloneNode(true));
+    const newForm = document.getElementById("contact-form") as HTMLFormElement;
+    const newFeedback = document.getElementById("form-feedback");
 
-    const formData = new FormData(form);
-    formData.append("access_key", accessKey);
+    newForm?.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-    // Mudando o texto do botão para dar feedback visual de carregamento
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalBtnText = submitBtn?.textContent || "Enviar Mensagem";
-    if (submitBtn) submitBtn.textContent = "Enviando...";
+      const accessKey = "607557a0-28f5-4f06-a367-c8524bd8eb62";
 
-    try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData,
-      });
+      const formData = new FormData(newForm);
+      formData.append("access_key", accessKey);
 
-      const data = await response.json();
+      const submitBtn = newForm.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn?.textContent || "Enviar Mensagem";
+      if (submitBtn) submitBtn.textContent = "Enviando...";
 
-      if (data.success) {
-        if (feedback) {
-          feedback.classList.remove("hidden");
-          feedback.classList.remove(
-            "bg-red-950/40",
-            "border-red-500/40",
-            "text-red-300",
-          );
-          feedback.classList.add(
+      try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          body: formData,
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          if (newFeedback) {
+            newFeedback.classList.remove("hidden");
+            newFeedback.classList.remove(
+              "bg-red-950/40",
+              "border-red-500/40",
+              "text-red-300",
+            );
+            newFeedback.classList.add(
+              "bg-orange-950/40",
+              "border-orange-500/40",
+              "text-orange-300",
+            );
+            newFeedback.textContent =
+              "Obrigado pelo contato! Sua mensagem foi enviada com sucesso. Retornaremos em breve.";
+            newForm.reset();
+          }
+        } else {
+          throw new Error(data.message || "Erro ao enviar.");
+        }
+      } catch (error) {
+        if (newFeedback) {
+          newFeedback.classList.remove("hidden");
+          newFeedback.classList.remove(
             "bg-orange-950/40",
             "border-orange-500/40",
             "text-orange-300",
           );
-          feedback.textContent =
-            "Obrigado pelo contato! Sua mensagem foi enviada com sucesso. Retornaremos em breve.";
-          form.reset();
+          newFeedback.classList.add(
+            "bg-red-950/40",
+            "border-red-500/40",
+            "text-red-300",
+          );
+          newFeedback.textContent =
+            "Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente mais tarde.";
         }
-      } else {
-        throw new Error(data.message || "Erro ao enviar.");
+      } finally {
+        if (submitBtn) submitBtn.textContent = originalBtnText;
       }
-    } catch (error) {
-      if (feedback) {
-        feedback.classList.remove("hidden");
-        feedback.classList.remove(
-          "bg-orange-950/40",
-          "border-orange-500/40",
-          "text-orange-300",
-        );
-        feedback.classList.add(
-          "bg-red-950/40",
-          "border-red-500/40",
-          "text-red-300",
-        );
-        feedback.textContent =
-          "Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente mais tarde.";
-      }
-    } finally {
-      if (submitBtn) submitBtn.textContent = originalBtnText;
-    }
-  });
+    });
+  }
+
+  // Executa na carga inicial e também nas navegações (ViewTransitions)
+  setupContactForm();
+  document.addEventListener("astro:page-load", setupContactForm);
 </script>
