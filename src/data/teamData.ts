@@ -14,7 +14,7 @@ export const teamData: TeamMember[] = [
     socialLinks: {
       instagram: 'https://instagram.com/i.pegavisao',
       linkedin: 'https://www.linkedin.com/alinnealmeida',
-      email: 'projetos@pegavisao.org.br'
+      email: 'institutopegavisao@gmail.com'
     }
   },
   {
@@ -24,7 +24,7 @@ export const teamData: TeamMember[] = [
     bio: 'Especialista em políticas públicas para juventude, mediação de conflitos e gestão de iniciativas artísticas territoriais.',
     image: deboraImg,
     socialLinks: {
-      email: 'projetos@pegavisao.org.br'
+      email: 'institutopegavisao@gmail.com'
     }
   },
   {
@@ -35,7 +35,7 @@ export const teamData: TeamMember[] = [
     image: milhemImg,
     socialLinks: {
       instagram: 'https://www.instagram.com/cortaz',
-      email: 'projetos@pegavisao.org.br'
+      email: 'institutopegavisao@gmail.com'
     }
   }
 ];

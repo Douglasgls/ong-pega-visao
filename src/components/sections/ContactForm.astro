@@ -1,12 +1,17 @@
 ---
-import Button from '../common/Button.astro';
+import Button from "../common/Button.astro";
 ---
 
-<div class="bg-zinc-900/60 border border-zinc-800/80 rounded-3xl p-6 sm:p-10 shadow-2xl">
+<div
+  class="bg-zinc-900/60 border border-zinc-800/80 rounded-3xl p-6 sm:p-10 shadow-2xl"
+>
   <form id="contact-form" class="space-y-6">
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
       <div class="space-y-2">
-        <label for="name" class="block text-xs font-heading font-semibold uppercase tracking-wider text-zinc-300">
+        <label
+          for="name"
+          class="block text-xs font-heading font-semibold uppercase tracking-wider text-zinc-300"
+        >
           Seu Nome *
         </label>
         <input
@@ -20,7 +25,10 @@ import Button from '../common/Button.astro';
       </div>
 
       <div class="space-y-2">
-        <label for="email" class="block text-xs font-heading font-semibold uppercase tracking-wider text-zinc-300">
+        <label
+          for="email"
+          class="block text-xs font-heading font-semibold uppercase tracking-wider text-zinc-300"
+        >
           E-mail *
         </label>
         <input
@@ -36,7 +44,10 @@ import Button from '../common/Button.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
       <div class="space-y-2">
-        <label for="phone" class="block text-xs font-heading font-semibold uppercase tracking-wider text-zinc-300">
+        <label
+          for="phone"
+          class="block text-xs font-heading font-semibold uppercase tracking-wider text-zinc-300"
+        >
           Telefone / WhatsApp
         </label>
         <input
@@ -49,7 +60,10 @@ import Button from '../common/Button.astro';
       </div>
 
       <div class="space-y-2">
-        <label for="subject" class="block text-xs font-heading font-semibold uppercase tracking-wider text-zinc-300">
+        <label
+          for="subject"
+          class="block text-xs font-heading font-semibold uppercase tracking-wider text-zinc-300"
+        >
           Assunto
         </label>
         <select
@@ -66,7 +80,10 @@ import Button from '../common/Button.astro';
     </div>
 
     <div class="space-y-2">
-      <label for="message" class="block text-xs font-heading font-semibold uppercase tracking-wider text-zinc-300">
+      <label
+        for="message"
+        class="block text-xs font-heading font-semibold uppercase tracking-wider text-zinc-300"
+      >
         Sua Mensagem *
       </label>
       <textarea
@@ -80,36 +97,100 @@ import Button from '../common/Button.astro';
     </div>
 
     <div>
-      <Button type="submit" variant="primary" size="lg" class="w-full sm:w-auto text-center justify-center">
+      <Button
+        type="submit"
+        variant="primary"
+        size="lg"
+        class="w-full sm:w-auto text-center justify-center"
+      >
         Enviar Mensagem
       </Button>
     </div>
 
-    <div id="form-feedback" class="hidden p-4 rounded-xl bg-orange-950/40 border border-orange-500/40 text-orange-300 text-sm font-medium">
-      Obrigado pelo contato! Sua mensagem foi enviada com sucesso. Retornaremos em breve.
+    <div
+      id="form-feedback"
+      class="hidden p-4 rounded-xl bg-orange-950/40 border border-orange-500/40 text-orange-300 text-sm font-medium"
+    >
+      Obrigado pelo contato! Sua mensagem foi enviada com sucesso. Retornaremos
+      em breve.
     </div>
   </form>
 </div>
 
 <script>
-  const form = document.getElementById('contact-form') as HTMLFormElement;
-  const feedback = document.getElementById('form-feedback');
-  const subjectSelect = document.getElementById('subject') as HTMLSelectElement;
+  const form = document.getElementById("contact-form") as HTMLFormElement;
+  const feedback = document.getElementById("form-feedback");
+  const subjectSelect = document.getElementById("subject") as HTMLSelectElement;
 
   // Check query parameter ?assunto=nova-parceria
   const urlParams = new URLSearchParams(window.location.search);
-  const assuntoParam = urlParams.get('assunto');
+  const assuntoParam = urlParams.get("assunto");
   if (assuntoParam && subjectSelect) {
-    if (assuntoParam === 'nova-parceria' || assuntoParam === 'parceria') {
-      subjectSelect.value = 'nova-parceria';
+    if (assuntoParam === "nova-parceria" || assuntoParam === "parceria") {
+      subjectSelect.value = "nova-parceria";
     }
   }
 
-  form?.addEventListener('submit', (e) => {
+  form?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    if (feedback) {
-      feedback.classList.remove('hidden');
-      form.reset();
+
+    // ATENÇÃO: Substitua 'SUA_CHAVE_DE_ACESSO_AQUI' pela sua chave real do Web3Forms (obtida em https://web3forms.com)
+    const accessKey = "607557a0-28f5-4f06-a367-c8524bd8eb62";
+
+    const formData = new FormData(form);
+    formData.append("access_key", accessKey);
+
+    // Mudando o texto do botão para dar feedback visual de carregamento
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn?.textContent || "Enviar Mensagem";
+    if (submitBtn) submitBtn.textContent = "Enviando...";
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        if (feedback) {
+          feedback.classList.remove("hidden");
+          feedback.classList.remove(
+            "bg-red-950/40",
+            "border-red-500/40",
+            "text-red-300",
+          );
+          feedback.classList.add(
+            "bg-orange-950/40",
+            "border-orange-500/40",
+            "text-orange-300",
+          );
+          feedback.textContent =
+            "Obrigado pelo contato! Sua mensagem foi enviada com sucesso. Retornaremos em breve.";
+          form.reset();
+        }
+      } else {
+        throw new Error(data.message || "Erro ao enviar.");
+      }
+    } catch (error) {
+      if (feedback) {
+        feedback.classList.remove("hidden");
+        feedback.classList.remove(
+          "bg-orange-950/40",
+          "border-orange-500/40",
+          "text-orange-300",
+        );
+        feedback.classList.add(
+          "bg-red-950/40",
+          "border-red-500/40",
+          "text-red-300",
+        );
+        feedback.textContent =
+          "Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente mais tarde.";
+      }
+    } finally {
+      if (submitBtn) submitBtn.textContent = originalBtnText;
     }
   });
 </script>
